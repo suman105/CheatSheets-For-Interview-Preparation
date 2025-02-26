@@ -20,26 +20,61 @@ SQL (Structured Query Language) is a standard language for managing and manipula
 
 ## Filtering Data
 - **WHERE**: Filters records based on specified conditions.
-  - **AND, OR, NOT**: Logical operators to combine conditions.
-  - **IN**: Checks if a value is within a set of values.
-  - **BETWEEN**: Filters records within a range.
-  - **LIKE**: Filters records using pattern matching.
-  - **IS NULL, IS NOT NULL**: Checks for null values.
-  - **EXISTS**: Checks if a subquery returns any rows.
-
-## Sorting and Limiting Data
+  ```sh
+  SELECT * FROM employees WHERE department = 'HR';
+- **AND, OR, NOT**: Logical operators to combine conditions.
+  ```sh
+  SELECT * FROM employees WHERE department = 'HR' AND age > 25;
+- **IN**: Checks if a value is within a set of values.
+  ```sh
+  SELECT * FROM employees WHERE department IN ('HR', 'Finance');
+- **BETWEEN**: Filters records within a range.
+  ```sh
+  SELECT * FROM employees WHERE age BETWEEN 25 AND 35;
+- **LIKE**: Filters records using pattern matching.
+  ```sh
+  SELECT * FROM employees WHERE name LIKE 'J%';
+- **IS NULL, IS NOT NULL**: Checks for null values.
+  ```sh
+  SELECT * FROM employees WHERE department IS NULL;
+- **EXISTS**: Checks if a subquery returns any rows.
+  ```sh
+  SELECT * FROM employees WHERE EXISTS (SELECT 1 FROM departments WHERE departments.id = employees.department_id);
+  
+# Sorting and Limiting Data
 - **ORDER BY**: Sorts the result set in ascending or descending order.
+  ```sh
+  SELECT * FROM employees ORDER BY age DESC;
 - **LIMIT**: Limits the number of records returned.
+  ```sh
+  SELECT * FROM employees LIMIT 5;
 - **DISTINCT**: Selects unique records.
+  ```sh
+  SELECT DISTINCT department FROM employees;
 
 ## Aggregating Data
 - **COUNT()**: Returns the number of rows.
+  ```sh
+  SELECT COUNT(*) FROM employees;
 - **SUM()**: Returns the sum of a numeric column.
+  ```sh
+  SELECT SUM(salary) FROM employees;
 - **AVG()**: Returns the average value of a numeric column.
+  ```sh
+  SELECT AVG(age) FROM employees;
 - **MIN()**: Returns the minimum value of a column.
+  ```sh
+  SELECT MIN(age) FROM employees;
 - **MAX()**: Returns the maximum value of a column.
+  ```sh
+  SELECT MAX(age) FROM employees;
 - **GROUP BY**: Groups rows that have the same values into summary rows.
+  ```sh
+  SELECT department, COUNT(*) FROM employees GROUP BY department;
 - **HAVING**: Filters groups based on a condition.
+```sh
+SELECT department, COUNT(*) FROM employees GROUP BY department HAVING COUNT(*) > 5;
+```
 
 ## Joins
 - **INNER JOIN**: Returns records with matching values in both tables.
