@@ -4,9 +4,13 @@ SQL (Structured Query Language) is a standard language for managing and manipula
 
 ## Basic SQL Commands
 - **SELECT**: Retrieves data from a database.
+  - `SELECT * FROM employees;`
 - **INSERT INTO**: Inserts new data into a database table.
+  - `INSERT INTO employees (name, age, department) VALUES ('John Doe', 30, 'HR');`
 - **UPDATE**: Updates existing data within a table.
+  - `UPDATE employees SET age = 31 WHERE name = 'John Doe';`
 - **DELETE**: Deletes data from a table.
+  - `DELETE FROM employees WHERE name = 'John Doe';`
 
 ## Filtering Data
 - **WHERE**: Filters records based on specified conditions.
