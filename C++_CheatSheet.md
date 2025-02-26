@@ -60,8 +60,9 @@
 
 ## 6. **Maps**
 - **Declaration:**
-  - `std::unordered_map<int, std::string> Map;`
-  - `std::map<int, std::string> treeMap;` — Ordered map
+  ```sh
+  - std::unordered_map<int, std::string> Map;
+  - std::map<int, std::string> treeMap;
 
 - **Operations:**
   - `Map[1] = "one";` — Insert key-value pair
@@ -73,7 +74,8 @@
 
 ## 7. **Sets**
 - **Declaration:**
-  - `std::unordered_set<int> Set;`
+  ```sh
+  std::unordered_set<int> Set;
 
 - **Operations:**
   - `Set.insert(val);` — Insert value
@@ -83,14 +85,18 @@
   - `Set.empty();` — Check if empty
 
 - **Ordered Set:**
-  - `std::set<int>::iterator it = Set.upper_bound(val);`
-  - `std::set<int>::iterator it = Set.lower_bound(val);`
+  ```sh
+   std::set<int>::iterator it = Set.upper_bound(val);
+   std::set<int>::iterator it = Set.lower_bound(val);
 
 ## 8. **Priority Queue (Heap)**
 - **Max Heap:**
-  - `std::priority_queue<int> pq;`
+```sh
+  std::priority_queue<int> pq;
+```
 - **Min Heap:**
-  - `std::priority_queue<int, std::vector<int>, std::greater<int>> minHeap;`
+  ```sh
+  std::priority_queue<int, std::vector<int>, std::greater<int>> minHeap;
 
 - **Operations:**
   - `pq.push(val);` — Insert value
@@ -110,7 +116,6 @@
 
 ## 10. **Queue**
 - **Operations:**
-  ```sh
   - `std::queue<int> q;`
   - `q.push(1);` — Push value
   - `q.pop();` — Remove front
