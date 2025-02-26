@@ -120,8 +120,9 @@
 
 ## 11. **Deque**
 - **Operations:**
-  - `std::deque<int> dq;`
-  - `dq.push_back(1);`
+  ```sh
+  - std::deque<int> dq;
+  - dq.push_back(1);
   - `dq.push_front(-1);`
   - `dq.pop_back();`
   - `dq.pop_front();`
@@ -144,17 +145,22 @@ public:
     TreeNode *left, *right;
     TreeNode(int val) { this->val = val; this->left = this->right = nullptr; }
 };
+```
 
 ## 13. **Random Number Generation**
+```sh
 #include <cstdlib>
 #include <ctime>
 srand(static_cast<unsigned>(time(0)));
 int randNum = rand() % 100 + 1;
+```
 
 ## 13. **Mathematical Functions**
+```sh
 #include <cmath>
 double pi = M_PI;
 double root = std::sqrt(16);
 double power = std::pow(2, 3);
 double sine = std::sin(M_PI / 2);
 double cosine = std::cos(M_PI / 3);
+```
