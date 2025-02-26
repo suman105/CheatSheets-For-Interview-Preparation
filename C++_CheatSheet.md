@@ -110,6 +110,7 @@
 
 ## 10. **Queue**
 - **Operations:**
+  ```sh
   - `std::queue<int> q;`
   - `q.push(1);` — Push value
   - `q.pop();` — Remove front
@@ -120,9 +121,8 @@
 
 ## 11. **Deque**
 - **Operations:**
-  ```sh
-  - std::deque<int> dq;
-  - dq.push_back(1);
+  - `std::deque<int> dq;`
+  - `dq.push_back(1);`
   - `dq.push_front(-1);`
   - `dq.pop_back();`
   - `dq.pop_front();`
