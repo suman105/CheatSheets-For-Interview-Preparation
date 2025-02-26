@@ -6,7 +6,6 @@ SQL (Structured Query Language) is a standard language for managing and manipula
 - **SELECT**: Retrieves data from a database.
   ```sh
   - SELECT * FROM employees;
-    
 - **INSERT INTO**: Inserts new data into a database table.
   - `INSERT INTO employees (name, age, department) VALUES ('John Doe', 30, 'HR');`
     
