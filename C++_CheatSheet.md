@@ -28,11 +28,13 @@
   - `str.erase(pos, length);` — Erase characters
 
 - **Searching:**
-  - `size_t found = str.find("ab");`
-  - `if (found != std::string::npos) std::cout << "found";`
+  ```sh
+  size_t found = str.find("ab");
+  if (found != std::string::npos) std::cout << "found";
 
 - **Reverse a String:**
-  - `std::reverse(str.begin(), str.end());`
+  ```sh
+  std::reverse(str.begin(), str.end());
 
 ## 4. **Arrays**
 - **Array Declarations:**
@@ -42,8 +44,9 @@
 
 ## 5. **Vectors**
 - **Vector Initialization:**
-  - `std::vector<int> v(size, 0);`
-  - `std::vector<std::vector<int>> v(N, std::vector<int>(M, 0));` — 2D vector
+  ```sh
+  std::vector<int> v(size, 0);
+  std::vector<std::vector<int>> v(N, std::vector<int>(M, 0));
 
 - **Vector Operations:**
   - `v.push_back(e);` — Add element
@@ -56,13 +59,14 @@
   - `v.back();` — Get last element
 
 - **Sorting:**
-  - `std::sort(v.begin(), v.end());` — Sort vector
+  ```sh
+  std::sort(v.begin(), v.end());
 
 ## 6. **Maps**
 - **Declaration:**
   ```sh
-  - std::unordered_map<int, std::string> Map;
-  - std::map<int, std::string> treeMap;
+  std::unordered_map<int, std::string> Map;
+  std::map<int, std::string> treeMap;
 
 - **Operations:**
   - `Map[1] = "one";` — Insert key-value pair
@@ -106,8 +110,10 @@
   - `pq.empty();` — Check if empty
 
 ## 9. **Stack**
+- **Declaration:**
+  ```sh
+  std::stack<int> s;
 - **Operations:**
-  - `std::stack<int> s;`
   - `s.push(1);` — Push value
   - `s.pop();` — Pop top element
   - `int top = s.top();` — Get top element
@@ -115,8 +121,10 @@
   - `s.size();` — Get size
 
 ## 10. **Queue**
+- **Declaration:**
+  ```sh
+  std::queue<int> q;
 - **Operations:**
-  - `std::queue<int> q;`
   - `q.push(1);` — Push value
   - `q.pop();` — Remove front
   - `int front = q.front();` — Get front
@@ -125,8 +133,10 @@
   - `q.size();` — Get size
 
 ## 11. **Deque**
+- **Declaration:**
+  ```sh
+  std::deque<int> dq;
 - **Operations:**
-  - `std::deque<int> dq;`
   - `dq.push_back(1);`
   - `dq.push_front(-1);`
   - `dq.pop_back();`
