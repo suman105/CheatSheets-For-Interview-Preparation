@@ -1,151 +1,173 @@
 # C++ Cheat Sheet
 
-## 1. **Max, Min Value**
-- **Integer Limits:**
-  - `INT_MAX = ~(1 << 31);` — Maximum int value (64-bit)
-  - `INT_MIN = (1 << 31);` — Minimum int value (64-bit)
-  - `UINT_MAX = (uint)(~0);` — Maximum unsigned int (32-bit)
-  - `LONG_MAX, LONG_MIN, ULONG_MAX` — Limits for long integers
+## Max, Min Value
 
-## 2. **String, Char, Integer Conversion**
-- **Convert Between Types:**
-  - `std::to_string(num);` — Convert int to string
-  - `std::stoi(s);` — Convert string to int
-  - `std::string(1, ch);` — Convert char to string
-  - `std::string(charArr);` — Convert char array to string
-
-## 3. **Strings in C++**
-- **String Manipulation:**
-  - `std::string str = "1234";` — Declare a string
-  - `char ch = str[i];` — Access the i-th character
-  - `size_t len = str.size();` — Get string length
-  - `std::string sub = str.substr(start, length);` — Get substring
-
-- **Modifications:**
-  - `str.append("abc");` — Append to string
-  - `str.insert(2, "sz");` — Insert at position
-  - `str.replace(pos, len, "newStr");` — Replace substring
-  - `str.erase(pos, length);` — Erase characters
-
-- **Searching:**
-  ```sh
-  size_t found = str.find("ab");
-  if (found != std::string::npos) std::cout << "found";
-
-- **Reverse a String:**
-  ```sh
-  std::reverse(str.begin(), str.end());
-
-## 4. **Arrays**
-- **Array Declarations:**
-  - `int nums[10] = {0};` — Static array
-  - `std::array<int, 10> arr = {0};` — `std::array` initialization
-  - `std::vector<int> vec(std::begin(nums), std::end(nums));` — Convert array to vector
-
-## 5. **Vectors**
-- **Vector Initialization:**
-  ```sh
-  std::vector<int> v(size, 0);
-  std::vector<std::vector<int>> v(N, std::vector<int>(M, 0));
-
-- **Vector Operations:**
-  - `v.push_back(e);` — Add element
-  - `v.pop_back();` — Remove last element
-  - `v.clear();` — Clear vector
-  - `v.insert(v.begin(), var);` — Insert at beginning
-  - `v.erase(v.begin() + 5);` — Remove element at index 5
-  - `v.resize(new_size);` — Resize vector
-  - `v.front();` — Get first element
-  - `v.back();` — Get last element
-
-- **Sorting:**
-  ```sh
-  std::sort(v.begin(), v.end());
-
-## 6. **Maps**
-- **Declaration:**
-  ```sh
-  std::unordered_map<int, std::string> Map;
-  std::map<int, std::string> treeMap;
-
-- **Operations:**
-  - `Map[1] = "one";` — Insert key-value pair
-  - `std::string str = Map[1];` — Access value
-  - `if (Map.find(1) != Map.end()) std::cout << Map[1];` — Check existence
-  - `Map.erase(1);` — Remove key
-  - `Map.size();` — Get size
-  - `Map.empty();` — Check if empty
-
-## 7. **Sets**
-- **Declaration:**
-  ```sh
-  std::unordered_set<int> Set;
-
-- **Operations:**
-  - `Set.insert(val);` — Insert value
-  - `Set.erase(val);` — Remove value
-  - `Set.find(1);` — Find value
-  - `Set.size();` — Get size
-  - `Set.empty();` — Check if empty
-
-- **Ordered Set:**
-  ```sh
-   std::set<int>::iterator it = Set.upper_bound(val);
-   std::set<int>::iterator it = Set.lower_bound(val);
-
-## 8. **Priority Queue (Heap)**
-- **Max Heap:**
-```sh
-  std::priority_queue<int> pq;
+```cpp
+#include<climits>
+INT_MAX = ~(1 << 31);   // for 64-bit machine
+INT_MIN = 1 << 31;      // for 64-bit machine
+UINT_MAX = (uint)(~0);  // 32-bit all equal 1
+LONG_MAX;
+LONG_MIN;
+ULONG_MAX;
 ```
-- **Min Heap:**
-  ```sh
-  std::priority_queue<int, std::vector<int>, std::greater<int>> minHeap;
 
-- **Operations:**
-  - `pq.push(val);` — Insert value
-  - `pq.pop();` — Remove top element
-  - `int top = pq.top();` — Get top element
-  - `pq.size();` — Get size
-  - `pq.empty();` — Check if empty
+## String, Char, Integer Conversion
 
-## 9. **Stack**
-- **Declaration:**
-  ```sh
-  std::stack<int> s;
-- **Operations:**
-  - `s.push(1);` — Push value
-  - `s.pop();` — Pop top element
-  - `int top = s.top();` — Get top element
-  - `s.empty();` — Check if empty
-  - `s.size();` — Get size
+```cpp
+// Convert int to string
+std::to_string(num);
+// Convert string to int
+std::stoi(s);
+// Convert char to string
+std::string(1, ch);
+// Convert char array to string
+std::string(charArr);
+```
 
-## 10. **Queue**
-- **Declaration:**
-  ```sh
-  std::queue<int> q;
-- **Operations:**
-  - `q.push(1);` — Push value
-  - `q.pop();` — Remove front
-  - `int front = q.front();` — Get front
-  - `int back = q.back();` — Get back
-  - `q.empty();` — Check if empty
-  - `q.size();` — Get size
+## Strings in C++
 
-## 11. **Deque**
-- **Declaration:**
-  ```sh
-  std::deque<int> dq;
-- **Operations:**
-  - `dq.push_back(1);`
-  - `dq.push_front(-1);`
-  - `dq.pop_back();`
-  - `dq.pop_front();`
-  - `dq.front();`
-  - `dq.back();`
-  - `dq.size();`
+Strings in C++ are mutable and provide various methods for manipulation:
 
-## 12. **Node Structures**
+```cpp
+std::string str = "1234";
+char ch = str[i]; // Access ith character
+size_t len = str.size();
+std::string sub = str.substr(start, length);
+
+// String modifications
+str.append("abc");
+str.insert(2, "sz");
+str.replace(pos, len, "newStr");
+str.erase(pos, length);
+
+// Search
+size_t found = str.find("ab");
+if (found != std::string::npos) std::cout << "found";
+
+// Reverse
+std::reverse(str.begin(), str.end());
+```
+
+## Arrays
+
+```cpp
+#include <array>
+int nums[10] = {0};
+std::array<int, 10> arr = {0};
+std::vector<int> vec(std::begin(nums), std::end(nums)); // Convert array to vector
+```
+
+## Vectors
+
+```cpp
+#include <vector>
+std::vector<int> v(size, 0);
+std::vector<std::vector<int>> v(N, std::vector<int>(M, 0));
+
+// Operations
+v.push_back(e);
+v.pop_back();
+v.clear();
+v.insert(v.begin(), var);
+v.erase(v.begin() + 5);
+v.resize(new_size);
+v.front();
+v.back();
+
+// Sorting
+std::sort(v.begin(), v.end());
+```
+
+## Maps
+
+```cpp
+#include <map>
+#include <unordered_map>
+std::unordered_map<int, std::string> Map;
+std::map<int, std::string> treeMap;
+
+// Insert, access, and erase
+Map[1] = "one";
+std::string str = Map[1];
+if (Map.find(1) != Map.end()) std::cout << Map[1] << std::endl;
+Map.erase(1);
+Map.size();
+Map.empty();
+```
+
+## Sets
+
+```cpp
+#include <set>
+#include <unordered_set>
+std::unordered_set<int> Set;
+Set.insert(val);
+Set.erase(val);
+Set.find(1);
+Set.size();
+Set.empty();
+
+// Ordered set operations
+std::set<int>::iterator it = Set.upper_bound(val);
+std::set<int>::iterator it = Set.lower_bound(val);
+```
+
+## Priority Queue (Heap)
+
+```cpp
+#include <queue>
+std::priority_queue<int> pq;
+std::priority_queue<int, std::vector<int>, std::greater<int>> minHeap;
+
+pq.push(val);
+pq.pop();
+int top = pq.top();
+pq.size();
+pq.empty();
+```
+
+## Stack
+
+```cpp
+#include <stack>
+std::stack<int> s;
+s.push(1);
+s.pop();
+int top = s.top();
+bool isEmpty = s.empty();
+s.size();
+```
+
+## Queue
+
+```cpp
+#include <queue>
+std::queue<int> q;
+q.push(1);
+q.pop();
+int front = q.front();
+int back = q.back();
+bool isEmpty = q.empty();
+q.size();
+```
+
+## Deque
+
+```cpp
+#include <deque>
+std::deque<int> dq;
+dq.push_back(1);
+dq.push_front(-1);
+dq.pop_back();
+dq.pop_front();
+dq.front();
+dq.back();
+dq.size();
+```
+
+## Node Structures
+
 ```cpp
 class ListNode{
 public:
@@ -162,16 +184,18 @@ public:
 };
 ```
 
-## 13. **Random Number Generation**
-```sh
+## Random Number Generation
+
+```cpp
 #include <cstdlib>
 #include <ctime>
 srand(static_cast<unsigned>(time(0)));
 int randNum = rand() % 100 + 1;
 ```
 
-## 13. **Mathematical Functions**
-```sh
+## Mathematical Functions
+
+```cpp
 #include <cmath>
 double pi = M_PI;
 double root = std::sqrt(16);
@@ -179,3 +203,6 @@ double power = std::pow(2, 3);
 double sine = std::sin(M_PI / 2);
 double cosine = std::cos(M_PI / 3);
 ```
+
+This cheat sheet covers fundamental C++ data structures, methods, and algorithms. Let me know if you need more additions!
+
