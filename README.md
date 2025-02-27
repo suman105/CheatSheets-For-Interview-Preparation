@@ -19,9 +19,9 @@ Welcome to the **Ultimate Cheat Sheets Collection** repository! 🚀 This reposi
 - Optimized queries for **database management and performance tuning**.
 
 ## 🔥 Why Use These Cheat Sheets?
-**Concise & Comprehensive** – Get the most important commands and concepts at a glance.
-**Well-Formatted & Easy to Read** – Clean markdown formatting for quick access.
-**Boost Productivity** – Spend less time searching and more time coding.
+- **Concise & Comprehensive** – Get the most important commands and concepts at a glance.
+- **Well-Formatted & Easy to Read** – Clean markdown formatting for quick access.
+- **Boost Productivity** – Spend less time searching and more time coding.
 
 ## 📥 How to Use?
 - Clone this repository:
