@@ -27,7 +27,7 @@ Welcome to the **Ultimate Cheat Sheets Collection** repository! 🚀 This reposi
 - Clone this repository:
 ```sh
  git clone https://github.com/suman105/Interview-Preparation-Resources.git
- cd cheatsheets
+ cd Interview-Preparation-Resources
 ```
 - Open the required cheat sheet file (`README.md` inside each directory).
 - Use the structured commands and references to speed up your workflow.
