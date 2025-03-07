@@ -18,8 +18,7 @@
 ## 2. Data Structures
 
 ### Arrays
-- #### 1. Searching Algorithms
-
+### 1. Searching Algorithms
 **1. Linear Search** 
 ```cpp
 int linearSearch(const vector<int>& arr, int target) {
@@ -59,7 +58,7 @@ int ternarySearch(const vector<int>& arr, int left, int right, int target) {
 }
 
 ```
-- #### 2. Sorting Algorithms
+#### 2. Sorting Algorithms
 **1. Bubble Sort** 
 ```cpp
 void bubbleSort(vector<int>& arr) {
@@ -220,7 +219,7 @@ void radixSort(vector<int>& arr) {
 
 ### Linked List
 
-- **Node Structure (Singly Linked List):**
+- **Singly Linked List (Node Structure):**
 ```cpp
 struct Node {
     int data;
@@ -232,100 +231,100 @@ struct Node {
 };
 
 ```
-  - **Insertion at the head:**O(1)
-    ```cpp
-    void insertAtHead(Node*& head, int value) {
-        Node* newNode = new Node(value);
-        newNode->next = head;
+- **Insertion at the head:**O(1)
+```cpp
+void insertAtHead(Node*& head, int value) {
+    Node* newNode = new Node(value);
+    newNode->next = head;
+    head = newNode;
+}
+```
+ - **Insertion at the tail:**O(n)
+```cpp
+void insertAtTail(Node*& head, int value) {
+    Node* newNode = new Node(value);
+    if (!head) {
         head = newNode;
+        return;
     }
-    ```
-     - **Insertion at the tail:**O(n)
-    ```cpp
-    void insertAtTail(Node*& head, int value) {
-        Node* newNode = new Node(value);
-        if (!head) {
-            head = newNode;
-            return;
-        }
-        Node* temp = head;
-        while (temp->next) temp = temp->next;
-        temp->next = newNode;
+    Node* temp = head;
+    while (temp->next) temp = temp->next;
+    temp->next = newNode;
+}
+```
+ - **Insertion at a specific position:**O(n)
+```cpp
+void insertAtPosition(Node*& head, int value, int position) {
+    if (position == 1) {
+        insertAtHead(head, value);
+        return;
     }
-    ```
-     - **Insertion at a specific position:**O(n)
-    ```cpp
-    void insertAtPosition(Node*& head, int value, int position) {
-        if (position == 1) {
-            insertAtHead(head, value);
-            return;
-        }
-        Node* temp = head;
-        for (int i = 1; i < position - 1; i++) {
-            if (temp == NULL) return; // Position out of bounds
-            temp = temp->next;
-        }
-        Node* newNode = new Node(value);
-        newNode->next = temp->next;
-        temp->next = newNode;
+    Node* temp = head;
+    for (int i = 1; i < position - 1; i++) {
+        if (temp == NULL) return; // Position out of bounds
+        temp = temp->next;
     }
-    ```
-     - **Deletion from the head:**O(1)
-    ```cpp
-    void deleteAtHead(Node*& head) {
-        if (head == NULL) return;
-        Node* temp = head;
-        head = head->next;
-        delete temp;
+    Node* newNode = new Node(value);
+    newNode->next = temp->next;
+    temp->next = newNode;
+}
+```
+ - **Deletion from the head:**O(1)
+```cpp
+void deleteAtHead(Node*& head) {
+    if (head == NULL) return;
+    Node* temp = head;
+    head = head->next;
+    delete temp;
+}
+```
+ - **Deletion from the tail:**O(n)
+```cpp
+void deleteAtTail(Node*& head) {
+    if (head == NULL) return;
+    if (head->next == NULL) {
+        delete head;
+        head = NULL;
+        return;
     }
-    ```
-     - **Deletion from the tail:**O(n)
-    ```cpp
-    void deleteAtTail(Node*& head) {
-        if (head == NULL) return;
-        if (head->next == NULL) {
-            delete head;
-            head = NULL;
-            return;
-        }
-        Node* temp = head;
-        while (temp->next && temp->next->next) {
-            temp = temp->next;
-        }
-        delete temp->next;
-        temp->next = NULL;
+    Node* temp = head;
+    while (temp->next && temp->next->next) {
+        temp = temp->next;
     }
-    ```
-    - **Deletion at a specific position:**O(n)
-    ```cpp
-    void deleteAtPosition(Node*& head, int position) {
-        if (position == 1) {
-            deleteAtHead(head);
-            return;
-        }
-        Node* temp = head;
-        for (int i = 1; i < position - 1; i++) {
-            if (temp == NULL) return; // Position out of bounds
-            temp = temp->next;
-        }
-        if (temp == NULL || temp->next == NULL) return;
-        Node* toDelete = temp->next;
-        temp->next = temp->next->next;
-        delete toDelete;
+    delete temp->next;
+    temp->next = NULL;
+}
+```
+- **Deletion at a specific position:**O(n)
+```cpp
+void deleteAtPosition(Node*& head, int position) {
+    if (position == 1) {
+        deleteAtHead(head);
+        return;
     }
-    ```
-    - **Display List:**O(n)
-    ```cpp
-    void displayList(Node* head) {
-        Node* temp = head;
-        while (temp != NULL) {
-            cout << temp->data << " ";
-            temp = temp->next;
-        }
-        cout << endl;
+    Node* temp = head;
+    for (int i = 1; i < position - 1; i++) {
+        if (temp == NULL) return; // Position out of bounds
+        temp = temp->next;
     }
-    ```
-- **Node Structure (Doubly Linked List):**
+    if (temp == NULL || temp->next == NULL) return;
+    Node* toDelete = temp->next;
+    temp->next = temp->next->next;
+    delete toDelete;
+}
+```
+- **Display List:**O(n)
+```cpp
+void displayList(Node* head) {
+    Node* temp = head;
+    while (temp != NULL) {
+        cout << temp->data << " ";
+        temp = temp->next;
+    }
+    cout << endl;
+}
+```
+- **Doubly Linked List (Node Structure):**
 ```cpp
     struct DNode {
         int data;
@@ -403,29 +402,6 @@ int dequeue(Node*& front) {
 }
 ```
 
-### Binary Tree
-
-- **Node Structure (Binary Tree):**
-```cpp
-struct TreeNode {
-    int data;
-    TreeNode* left;
-    TreeNode* right;
-};
-```
-
-### Binary Search Tree (BST)
-
-- **Node Structure (Binary Search Tree):**
-```cpp
-struct Node {
-    int data;
-    Node* left;
-    Node* right;
-};
-```
-
----
 
 ### Heap (Binary Heap)
 
@@ -565,3 +541,104 @@ pq.pop();
 ```
 
 ---
+
+### Binary Search Tree (BST)
+
+- **Node Structure (Binary Search Tree):**
+```cpp
+struct Node {
+    int data;
+    Node* left;
+    Node* right;
+};
+```
+
+#### Basic Tree Operations
+- **Insert Node (BST):** O(logn)
+```cpp
+TreeNode* insert(TreeNode* root, int value) {
+    if (root == NULL) {
+        return new TreeNode{value};
+    }
+    if (value < root->data) {
+        root->left = insert(root->left, value);
+    } else {
+        root->right = insert(root->right, value);
+    }
+    return root;
+}
+```
+- **In-order Traversal:** O(n)
+```cpp
+void inorder(TreeNode* root) {
+    if (root == NULL) return;
+    inorder(root->left);
+    cout << root->data << " ";
+    inorder(root->right);
+}
+```
+- **Pre-order Traversal:** O(n)
+```cpp
+void preorder(TreeNode* root) {
+    if (root == NULL) return;
+    cout << root->data << " ";
+    preorder(root->left);
+    preorder(root->right);
+}
+```
+- **Post-order Traversal:** O(n)
+```cpp
+void postorder(TreeNode* root) {
+    if (root == NULL) return;
+    postorder(root->left);
+    postorder(root->right);
+    cout << root->data << " ";
+}
+```
+- **Height of Tree:** O(n)
+```cpp
+int height(TreeNode* root) {
+    if (root == NULL) return 0;
+    return max(height(root->left), height(root->right)) + 1;
+}
+```
+- **Search in BST**:** O(logn)
+```cpp
+TreeNode* search(TreeNode* root, int key) {
+    if (root == NULL || root->data == key) return root;
+    if (key < root->data) return search(root->left, key);
+    return search(root->right, key);
+}
+```
+- **Delete Node in BST:** O(logn)
+```cpp
+TreeNode* deleteNode(TreeNode* root, int key) {
+    if (root == NULL) return root;
+    if (key < root->data) root->left = deleteNode(root->left, key);
+    else if (key > root->data) root->right = deleteNode(root->right, key);
+    else {
+        if (root->left == NULL) {
+            TreeNode* temp = root->right;
+            delete root;
+            return temp;
+        } else if (root->right == NULL) {
+            TreeNode* temp = root->left;
+            delete root;
+            return temp;
+        }
+        TreeNode* temp = minValueNode(root->right);
+        root->data = temp->data;
+        root->right = deleteNode(root->right, temp->data);
+    }
+    return root;
+}
+
+TreeNode* minValueNode(TreeNode* node) {
+    TreeNode* current = node;
+    while (current && current->left != NULL) current = current->left;
+    return current;
+}
+```
+
+---
+
