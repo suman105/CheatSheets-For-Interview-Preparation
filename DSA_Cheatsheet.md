@@ -314,7 +314,7 @@ void selectionSort(vector<int>& arr) {
     }
 }
 ```
-** 3. Insertion Sort ** 
+**3. Insertion Sort** 
 ```cpp
 void insertionSort(vector<int>& arr) {
     int n = arr.size();
@@ -329,7 +329,7 @@ void insertionSort(vector<int>& arr) {
     }
 }
 ```
-** 4. Merge Sort **
+**4. Merge Sort**
 ```cpp
 void merge(vector<int>& arr, int left, int mid, int right) {
     int n1 = mid - left + 1;
@@ -361,7 +361,7 @@ void mergeSort(vector<int>& arr, int left, int right) {
     }
 }
 ```
-** 5. Quick Sort ** 
+**5. Quick Sort** 
 ```cpp
 int partition(vector<int>& arr, int low, int high) {
     int pivot = arr[high];
@@ -384,7 +384,7 @@ void quickSort(vector<int>& arr, int low, int high) {
     }
 }
 ```
-** 6. Heap Sort **
+**6. Heap Sort**
 ```cpp
 void heapify(vector<int>& arr, int n, int i) {
     int largest = i;
@@ -408,7 +408,7 @@ void heapSort(vector<int>& arr) {
 }
 ```
 
-** 7. Counting Sort ** 
+**7. Counting Sort** 
 ```cpp
 void countingSort(vector<int>& arr) {
     int maxVal = *max_element(arr.begin(), arr.end());
@@ -422,7 +422,7 @@ void countingSort(vector<int>& arr) {
     for (int i = 0; i < arr.size(); i++) arr[i] = output[i];
 }
 ```
-** 8. Radix Sort ** 
+**8. Radix Sort** 
 ```cpp
 void countingSortRadix(vector<int>& arr, int exp) {
     vector<int> output(arr.size());
@@ -446,7 +446,7 @@ void radixSort(vector<int>& arr) {
 
 ## 4. Searching Algorithms
 
-** 1. Linear Search ** 
+**1. Linear Search** 
 ```cpp
 int linearSearch(const vector<int>& arr, int target) {
     for (int i = 0; i < arr.size(); i++) {
@@ -455,7 +455,7 @@ int linearSearch(const vector<int>& arr, int target) {
     return -1;
 }
 ```
-** 2. Binary Search ** 
+**2. Binary Search** 
 ```cpp
 int binarySearch(const vector<int>& arr, int target) {
     int left = 0, right = arr.size() - 1;
@@ -469,7 +469,7 @@ int binarySearch(const vector<int>& arr, int target) {
 }
 ```
 
-** 3. Ternary Search ** 
+**3. Ternary Search** 
 ```cpp
 int ternarySearch(const vector<int>& arr, int left, int right, int target) {
     if (right >= left) {
