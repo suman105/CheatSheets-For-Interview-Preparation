@@ -286,7 +286,202 @@ pq.pop();
 ---
 
 ## 3. Sorting Algorithms
-(Refer to previous responses for sorting algorithms)
+** 1. Bubble Sort ** 
+```cpp
+void bubbleSort(vector<int>& arr) {
+    int n = arr.size();
+    for (int i = 0; i < n-1; i++) {
+        for (int j = 0; j < n-i-1; j++) {
+            if (arr[j] > arr[j+1]) {
+                swap(arr[j], arr[j+1]);
+            }
+        }
+    }
+}
+```
+** 2. Selection Sort **
+```cpp
+void selectionSort(vector<int>& arr) {
+    int n = arr.size();
+    for (int i = 0; i < n-1; i++) {
+        int minIndex = i;
+        for (int j = i+1; j < n; j++) {
+            if (arr[j] < arr[minIndex]) {
+                minIndex = j;
+            }
+        }
+        swap(arr[i], arr[minIndex]);
+    }
+}
+```
+** 3. Insertion Sort ** 
+```cpp
+void insertionSort(vector<int>& arr) {
+    int n = arr.size();
+    for (int i = 1; i < n; i++) {
+        int key = arr[i];
+        int j = i - 1;
+        while (j >= 0 && arr[j] > key) {
+            arr[j+1] = arr[j];
+            j--;
+        }
+        arr[j+1] = key;
+    }
+}
+```
+** 4. Merge Sort **
+```cpp
+void merge(vector<int>& arr, int left, int mid, int right) {
+    int n1 = mid - left + 1;
+    int n2 = right - mid;
+    vector<int> L(n1), R(n2);
+    for (int i = 0; i < n1; i++) L[i] = arr[left + i];
+    for (int i = 0; i < n2; i++) R[i] = arr[mid + 1 + i];
+    int i = 0, j = 0, k = left;
+    while (i < n1 && j < n2) {
+        if (L[i] <= R[j]) {
+            arr[k] = L[i];
+            i++;
+        } else {
+            arr[k] = R[j];
+            j++;
+        }
+        k++;
+    }
+    while (i < n1) { arr[k] = L[i]; i++; k++; }
+    while (j < n2) { arr[k] = R[j]; j++; k++; }
+}
+
+void mergeSort(vector<int>& arr, int left, int right) {
+    if (left < right) {
+        int mid = left + (right - left) / 2;
+        mergeSort(arr, left, mid);
+        mergeSort(arr, mid+1, right);
+        merge(arr, left, mid, right);
+    }
+}
+```
+** 5. Quick Sort ** 
+```cpp
+int partition(vector<int>& arr, int low, int high) {
+    int pivot = arr[high];
+    int i = low - 1;
+    for (int j = low; j < high; j++) {
+        if (arr[j] < pivot) {
+            i++;
+            swap(arr[i], arr[j]);
+        }
+    }
+    swap(arr[i+1], arr[high]);
+    return i+1;
+}
+
+void quickSort(vector<int>& arr, int low, int high) {
+    if (low < high) {
+        int pi = partition(arr, low, high);
+        quickSort(arr, low, pi - 1);
+        quickSort(arr, pi + 1, high);
+    }
+}
+```
+** 6. Heap Sort **
+```cpp
+void heapify(vector<int>& arr, int n, int i) {
+    int largest = i;
+    int left = 2*i + 1;
+    int right = 2*i + 2;
+    if (left < n && arr[left] > arr[largest]) largest = left;
+    if (right < n && arr[right] > arr[largest]) largest = right;
+    if (largest != i) {
+        swap(arr[i], arr[largest]);
+        heapify(arr, n, largest);
+    }
+}
+
+void heapSort(vector<int>& arr) {
+    int n = arr.size();
+    for (int i = n/2 - 1; i >= 0; i--) heapify(arr, n, i);
+    for (int i = n-1; i >= 0; i--) {
+        swap(arr[0], arr[i]);
+        heapify(arr, i, 0);
+    }
+}
+```
+
+** 7. Counting Sort ** 
+```cpp
+void countingSort(vector<int>& arr) {
+    int maxVal = *max_element(arr.begin(), arr.end());
+    vector<int> count(maxVal + 1, 0), output(arr.size());
+    for (int i = 0; i < arr.size(); i++) count[arr[i]]++;
+    for (int i = 1; i <= maxVal; i++) count[i] += count[i-1];
+    for (int i = arr.size()-1; i >= 0; i--) {
+        output[count[arr[i]]-1] = arr[i];
+        count[arr[i]]--;
+    }
+    for (int i = 0; i < arr.size(); i++) arr[i] = output[i];
+}
+```
+** 8. Radix Sort ** 
+```cpp
+void countingSortRadix(vector<int>& arr, int exp) {
+    vector<int> output(arr.size());
+    vector<int> count(10, 0);
+    for (int i = 0; i < arr.size(); i++) count[(arr[i]/exp) % 10]++;
+    for (int i = 1; i < 10; i++) count[i] += count[i-1];
+    for (int i = arr.size()-1; i >= 0; i--) {
+        output[count[(arr[i]/exp) % 10] - 1] = arr[i];
+        count[(arr[i]/exp) % 10]--;
+    }
+    for (int i = 0; i < arr.size(); i++) arr[i] = output[i];
+}
+
+void radixSort(vector<int>& arr) {
+    int maxVal = *max_element(arr.begin(), arr.end());
+    for (int exp = 1; maxVal / exp > 0; exp *= 10) {
+        countingSortRadix(arr, exp);
+    }
+}
+```
 
 ## 4. Searching Algorithms
-(Refer to previous responses for searching algorithms)
+
+** 1. Linear Search ** 
+```cpp
+int linearSearch(const vector<int>& arr, int target) {
+    for (int i = 0; i < arr.size(); i++) {
+        if (arr[i] == target) return i;
+    }
+    return -1;
+}
+```
+** 2. Binary Search ** 
+```cpp
+int binarySearch(const vector<int>& arr, int target) {
+    int left = 0, right = arr.size() - 1;
+    while (left <= right) {
+        int mid = left + (right - left) / 2;
+        if (arr[mid] == target) return mid;
+        else if (arr[mid] < target) left = mid + 1;
+        else right = mid - 1;
+    }
+    return -1;
+}
+```
+
+** 3. Ternary Search ** 
+```cpp
+int ternarySearch(const vector<int>& arr, int left, int right, int target) {
+    if (right >= left) {
+        int mid1 = left + (right - left) / 3;
+        int mid2 = right - (right - left) / 3;
+        if (arr[mid1] == target) return mid1;
+        if (arr[mid2] == target) return mid2;
+        if (target < arr[mid1]) return ternarySearch(arr, left, mid1 - 1, target);
+        else if (target > arr[mid2]) return ternarySearch(arr, mid2 + 1, right, target);
+        else return ternarySearch(arr, mid1 + 1, mid2 - 1, target);
+    }
+    return -1;
+}
+
+```
