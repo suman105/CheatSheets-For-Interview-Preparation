@@ -217,33 +217,58 @@ void heapSort(vector<int>& arr) {
 - **Counting Sort** 
 ```cpp
 void countingSort(vector<int>& arr) {
-    int maxVal = *max_element(arr.begin(), arr.end());
-    vector<int> count(maxVal + 1, 0), output(arr.size());
-    for (int i = 0; i < arr.size(); i++) count[arr[i]]++;
-    for (int i = 1; i <= maxVal; i++) count[i] += count[i-1];
+    int maxVal = *max_element(arr.begin(), arr.end()); // Find the maximum value in the array
+    vector<int> count(maxVal + 1, 0), output(arr.size()); // Create count and output arrays
+
+    // Step 1: Count the occurrences of each element
+    for (int i = 0; i < arr.size(); i++) 
+        count[arr[i]]++;
+
+    // Step 2: Compute cumulative sum in count array (for sorting order)
+    for (int i = 1; i <= maxVal; i++) 
+        count[i] += count[i-1];
+
+    // Step 3: Place elements in sorted order in the output array
     for (int i = arr.size()-1; i >= 0; i--) {
-        output[count[arr[i]]-1] = arr[i];
-        count[arr[i]]--;
+        output[count[arr[i]] - 1] = arr[i];
+        count[arr[i]]--; // Decrement the count
     }
-    for (int i = 0; i < arr.size(); i++) arr[i] = output[i];
+
+    // Step 4: Copy sorted elements back to the original array
+    for (int i = 0; i < arr.size(); i++) 
+        arr[i] = output[i];
 }
 ```
 - **Radix Sort** 
 ```cpp
 void countingSortRadix(vector<int>& arr, int exp) {
-    vector<int> output(arr.size());
-    vector<int> count(10, 0);
-    for (int i = 0; i < arr.size(); i++) count[(arr[i]/exp) % 10]++;
-    for (int i = 1; i < 10; i++) count[i] += count[i-1];
-    for (int i = arr.size()-1; i >= 0; i--) {
-        output[count[(arr[i]/exp) % 10] - 1] = arr[i];
-        count[(arr[i]/exp) % 10]--;
+    vector<int> output(arr.size()); // Output array to store sorted elements
+    vector<int> count(10, 0); // Count array to store frequency of digits (0-9)
+
+    // Step 1: Count occurrences of each digit at the current exponent place
+    for (int i = 0; i < arr.size(); i++) 
+        count[(arr[i] / exp) % 10]++;
+
+    // Step 2: Compute cumulative sum in count array
+    for (int i = 1; i < 10; i++) 
+        count[i] += count[i - 1];
+
+    // Step 3: Place elements in sorted order based on current digit
+    for (int i = arr.size() - 1; i >= 0; i--) {
+        output[count[(arr[i] / exp) % 10] - 1] = arr[i];
+        count[(arr[i] / exp) % 10]--; // Decrement the count
     }
-    for (int i = 0; i < arr.size(); i++) arr[i] = output[i];
+
+    // Step 4: Copy sorted elements back to the original array
+    for (int i = 0; i < arr.size(); i++) 
+        arr[i] = output[i];
 }
 
+// Radix Sort: Sorts numbers digit by digit using Counting Sort
 void radixSort(vector<int>& arr) {
-    int maxVal = *max_element(arr.begin(), arr.end());
+    int maxVal = *max_element(arr.begin(), arr.end()); // Find the maximum value in the array
+
+    // Apply Counting Sort for each digit (place value increases by powers of 10)
     for (int exp = 1; maxVal / exp > 0; exp *= 10) {
         countingSortRadix(arr, exp);
     }
@@ -254,103 +279,105 @@ void radixSort(vector<int>& arr) {
 - A Linked List is a linear data structure where elements (nodes) are connected using pointers. Each node contains a data part and a pointer to the next node.
 -  **Singly Linked List (Node Structure):**
 ```cpp
+// Structure for a Singly Linked List Node
 struct Node {
     int data;
     Node* next;
+    
+    // Constructor to initialize the node with a value
     Node(int val) {
         data = val;
         next = NULL;
     }
 };
-
 ```
 - **Insertion at the head:** O(1)
 ```cpp
 void insertAtHead(Node*& head, int value) {
-    Node* newNode = new Node(value);
-    newNode->next = head;
-    head = newNode;
+    Node* newNode = new Node(value); // Create a new node
+    newNode->next = head; // Point new node to the old head
+    head = newNode; // Update head pointer
 }
 ```
  - **Insertion at the tail:** O(n)
 ```cpp
 void insertAtTail(Node*& head, int value) {
-    Node* newNode = new Node(value);
-    if (!head) {
+    Node* newNode = new Node(value); // Create a new node
+    if (!head) { // If list is empty, make new node the head
         head = newNode;
         return;
     }
     Node* temp = head;
-    while (temp->next) temp = temp->next;
-    temp->next = newNode;
+    while (temp->next) temp = temp->next; // Traverse to last node
+    temp->next = newNode; // Append new node at the end
 }
 ```
  - **Insertion at a specific position:** O(n)
 ```cpp
 void insertAtPosition(Node*& head, int value, int position) {
-    if (position == 1) {
+    if (position == 1) { // Insert at head if position is 1
         insertAtHead(head, value);
         return;
     }
     Node* temp = head;
-    for (int i = 1; i < position - 1; i++) {
-        if (temp == NULL) return; // Position out of bounds
+    for (int i = 1; i < position - 1; i++) { // Traverse to (position-1)th node
+        if (temp == NULL) return; // If position is out of bounds, return
         temp = temp->next;
     }
     Node* newNode = new Node(value);
     newNode->next = temp->next;
-    temp->next = newNode;
+    temp->next = newNode; // Link new node in the list
 }
 ```
  - **Deletion from the head:** O(1)
 ```cpp
 void deleteAtHead(Node*& head) {
-    if (head == NULL) return;
+    if (head == NULL) return; // If list is empty, return
     Node* temp = head;
-    head = head->next;
-    delete temp;
+    head = head->next; // Move head to next node
+    delete temp; // Delete the old head node
 }
 ```
  - **Deletion from the tail:** O(n)
 ```cpp
 void deleteAtTail(Node*& head) {
-    if (head == NULL) return;
-    if (head->next == NULL) {
+    if (head == NULL) return; // If list is empty, return
+    if (head->next == NULL) { // If only one node is present
         delete head;
         head = NULL;
         return;
     }
     Node* temp = head;
-    while (temp->next && temp->next->next) {
+    while (temp->next && temp->next->next) { // Traverse to second last node
         temp = temp->next;
     }
-    delete temp->next;
-    temp->next = NULL;
+    delete temp->next; // Delete last node
+    temp->next = NULL; // Set second-last node's next to NULL
 }
 ```
 - **Deletion at a specific position:** O(n)
 ```cpp
 void deleteAtPosition(Node*& head, int position) {
-    if (position == 1) {
+    if (position == 1) { // If deleting head, call deleteAtHead
         deleteAtHead(head);
         return;
     }
     Node* temp = head;
-    for (int i = 1; i < position - 1; i++) {
-        if (temp == NULL) return; // Position out of bounds
+    for (int i = 1; i < position - 1; i++) { // Traverse to (position-1)th node
+        if (temp == NULL) return; // If position is out of bounds, return
         temp = temp->next;
     }
-    if (temp == NULL || temp->next == NULL) return;
+    if (temp == NULL || temp->next == NULL) return; // If position is invalid, return
     Node* toDelete = temp->next;
-    temp->next = temp->next->next;
-    delete toDelete;
+    temp->next = temp->next->next; // Link previous node to next node
+    delete toDelete; // Delete the node
 }
 ```
 - **Display List:** O(n)
 ```cpp
 void displayList(Node* head) {
     Node* temp = head;
-    while (temp != NULL) {
+    while (temp != NULL) { // Iterate through the list
         cout << temp->data << " ";
         temp = temp->next;
     }
@@ -359,16 +386,19 @@ void displayList(Node* head) {
 ```
 - **Doubly Linked List (Node Structure):**
 ```cpp
-    struct DNode {
-        int data;
-        DNode* prev;
-        DNode* next;
-        DNode(int val) {
-            data = val;
-            prev = NULL;
-            next = NULL;
-        }
-    };
+// Structure for a Doubly Linked List Node
+struct DNode {
+    int data;
+    DNode* prev;
+    DNode* next;
+    
+    // Constructor to initialize the node with a value
+    DNode(int val) {
+        data = val;
+        prev = NULL;
+        next = NULL;
+    }
+};
 ``` 
 
 ### Stack
