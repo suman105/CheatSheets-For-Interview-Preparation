@@ -18,7 +18,7 @@
 ## 2. Data Structures
 
 ### Arrays
-- ## Searching Algorithms
+- #### 1. Searching Algorithms
 
 **1. Linear Search** 
 ```cpp
@@ -59,7 +59,7 @@ int ternarySearch(const vector<int>& arr, int left, int right, int target) {
 }
 
 ```
-- ## Sorting Algorithms
+- #### 2. Sorting Algorithms
 **1. Bubble Sort** 
 ```cpp
 void bubbleSort(vector<int>& arr) {
@@ -225,28 +225,119 @@ void radixSort(vector<int>& arr) {
 struct Node {
     int data;
     Node* next;
+    Node(int val) {
+        data = val;
+        next = NULL;
+    }
 };
+
 ```
-
-- **Basic Operations (Insertion and Deletion):**
-```cpp
-// Insert at the beginning
-void insertAtBeginning(Node*& head, int value) {
-    Node* newNode = new Node;
-    newNode->data = value;
-    newNode->next = head;
-    head = newNode;
-}
-
-// Delete at the beginning
-void deleteAtBeginning(Node*& head) {
-    if (head != nullptr) {
+  - **Insertion at the head:**O(1)
+    ```cpp
+    void insertAtHead(Node*& head, int value) {
+        Node* newNode = new Node(value);
+        newNode->next = head;
+        head = newNode;
+    }
+    ```
+     - **Insertion at the tail:**O(n)
+    ```cpp
+    void insertAtTail(Node*& head, int value) {
+        Node* newNode = new Node(value);
+        if (!head) {
+            head = newNode;
+            return;
+        }
+        Node* temp = head;
+        while (temp->next) temp = temp->next;
+        temp->next = newNode;
+    }
+    ```
+     - **Insertion at a specific position:**O(n)
+    ```cpp
+    void insertAtPosition(Node*& head, int value, int position) {
+        if (position == 1) {
+            insertAtHead(head, value);
+            return;
+        }
+        Node* temp = head;
+        for (int i = 1; i < position - 1; i++) {
+            if (temp == NULL) return; // Position out of bounds
+            temp = temp->next;
+        }
+        Node* newNode = new Node(value);
+        newNode->next = temp->next;
+        temp->next = newNode;
+    }
+    ```
+     - **Deletion from the head:**O(1)
+    ```cpp
+    void deleteAtHead(Node*& head) {
+        if (head == NULL) return;
         Node* temp = head;
         head = head->next;
         delete temp;
     }
-}
-```
+    ```
+     - **Deletion from the tail:**O(n)
+    ```cpp
+    void deleteAtTail(Node*& head) {
+        if (head == NULL) return;
+        if (head->next == NULL) {
+            delete head;
+            head = NULL;
+            return;
+        }
+        Node* temp = head;
+        while (temp->next && temp->next->next) {
+            temp = temp->next;
+        }
+        delete temp->next;
+        temp->next = NULL;
+    }
+    ```
+    - **Deletion at a specific position:**O(n)
+    ```cpp
+    void deleteAtPosition(Node*& head, int position) {
+        if (position == 1) {
+            deleteAtHead(head);
+            return;
+        }
+        Node* temp = head;
+        for (int i = 1; i < position - 1; i++) {
+            if (temp == NULL) return; // Position out of bounds
+            temp = temp->next;
+        }
+        if (temp == NULL || temp->next == NULL) return;
+        Node* toDelete = temp->next;
+        temp->next = temp->next->next;
+        delete toDelete;
+    }
+    ```
+    - **Display List:**O(n)
+    ```cpp
+    void displayList(Node* head) {
+        Node* temp = head;
+        while (temp != NULL) {
+            cout << temp->data << " ";
+            temp = temp->next;
+        }
+        cout << endl;
+    }
+    ```
+- **Node Structure (Doubly Linked List):**
+```cpp
+    struct DNode {
+        int data;
+        DNode* prev;
+        DNode* next;
+        DNode(int val) {
+            data = val;
+            prev = NULL;
+            next = NULL;
+        }
+    };
+``` 
 
 ### Stack
 
@@ -316,10 +407,10 @@ int dequeue(Node*& front) {
 
 - **Node Structure (Binary Tree):**
 ```cpp
-struct Node {
+struct TreeNode {
     int data;
-    Node* left;
-    Node* right;
+    TreeNode* left;
+    TreeNode* right;
 };
 ```
 
