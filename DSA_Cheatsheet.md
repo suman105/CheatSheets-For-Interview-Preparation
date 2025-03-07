@@ -18,53 +18,56 @@
 ## 2. Data Structures
 
 ### Arrays
+- An array is a collection of elements identified by index or key. It allows efficient indexing but has a fixed size.
 ### 1. Searching Algorithms
-**1. Linear Search** 
+- **Linear Search** 
 ```cpp
 int linearSearch(const vector<int>& arr, int target) {
+    // Iterate through the entire array
     for (int i = 0; i < arr.size(); i++) {
-        if (arr[i] == target) return i;
+        if (arr[i] == target) return i; // Return index if target is found
     }
-    return -1;
+    return -1; // Return -1 if not found
 }
 ```
-**2. Binary Search** 
+- **Binary Search** 
 ```cpp
 int binarySearch(const vector<int>& arr, int target) {
     int left = 0, right = arr.size() - 1;
     while (left <= right) {
         int mid = left + (right - left) / 2;
-        if (arr[mid] == target) return mid;
-        else if (arr[mid] < target) left = mid + 1;
-        else right = mid - 1;
+        if (arr[mid] == target) return mid; // Target found
+        else if (arr[mid] < target) left = mid + 1; // Search in the right half
+        else right = mid - 1; // Search in the left half
     }
-    return -1;
+    return -1; // Return -1 if not found
 }
 ```
 
-**3. Ternary Search** 
+- **Ternary Search** 
 ```cpp
 int ternarySearch(const vector<int>& arr, int left, int right, int target) {
     if (right >= left) {
         int mid1 = left + (right - left) / 3;
         int mid2 = right - (right - left) / 3;
-        if (arr[mid1] == target) return mid1;
-        if (arr[mid2] == target) return mid2;
-        if (target < arr[mid1]) return ternarySearch(arr, left, mid1 - 1, target);
-        else if (target > arr[mid2]) return ternarySearch(arr, mid2 + 1, right, target);
-        else return ternarySearch(arr, mid1 + 1, mid2 - 1, target);
+        if (arr[mid1] == target) return mid1; // Target found at mid1
+        if (arr[mid2] == target) return mid2; // Target found at mid2
+        if (target < arr[mid1]) return ternarySearch(arr, left, mid1 - 1, target); // Search left of mid1
+        else if (target > arr[mid2]) return ternarySearch(arr, mid2 + 1, right, target); // Search right of mid2
+        else return ternarySearch(arr, mid1 + 1, mid2 - 1, target); // Search between mid1 and mid2
     }
-    return -1;
+    return -1; // Return -1 if not found
 }
-
 ```
 #### 2. Sorting Algorithms
-**1. Bubble Sort** 
+- **Bubble Sort** 
 ```cpp
 void bubbleSort(vector<int>& arr) {
     int n = arr.size();
+    // Perform multiple passes through the array
     for (int i = 0; i < n-1; i++) {
         for (int j = 0; j < n-i-1; j++) {
+            // Swap adjacent elements if they are in wrong order
             if (arr[j] > arr[j+1]) {
                 swap(arr[j], arr[j+1]);
             }
@@ -72,45 +75,53 @@ void bubbleSort(vector<int>& arr) {
     }
 }
 ```
-**2. Selection Sort**
+- **Selection Sort**
 ```cpp
 void selectionSort(vector<int>& arr) {
     int n = arr.size();
+    // Select the minimum element in each pass
     for (int i = 0; i < n-1; i++) {
         int minIndex = i;
         for (int j = i+1; j < n; j++) {
             if (arr[j] < arr[minIndex]) {
-                minIndex = j;
+                minIndex = j; // Update minimum index
             }
         }
+        // Swap the found minimum element with the first element
         swap(arr[i], arr[minIndex]);
     }
 }
 ```
-**3. Insertion Sort** 
+- **Insertion Sort** 
 ```cpp
 void insertionSort(vector<int>& arr) {
     int n = arr.size();
+    // Build the sorted array one element at a time
     for (int i = 1; i < n; i++) {
         int key = arr[i];
         int j = i - 1;
+        // Move elements of arr[0..i-1] that are greater than key
         while (j >= 0 && arr[j] > key) {
             arr[j+1] = arr[j];
             j--;
         }
-        arr[j+1] = key;
+        arr[j+1] = key; // Insert the key at the correct position
     }
 }
 ```
-**4. Merge Sort**
+- **Merge Sort**
 ```cpp
 void merge(vector<int>& arr, int left, int mid, int right) {
     int n1 = mid - left + 1;
     int n2 = right - mid;
     vector<int> L(n1), R(n2);
+
+    // Copy data into temporary arrays L[] and R[]
     for (int i = 0; i < n1; i++) L[i] = arr[left + i];
     for (int i = 0; i < n2; i++) R[i] = arr[mid + 1 + i];
+
     int i = 0, j = 0, k = left;
+    // Merge the temp arrays back into the original array
     while (i < n1 && j < n2) {
         if (L[i] <= R[j]) {
             arr[k] = L[i];
@@ -121,50 +132,67 @@ void merge(vector<int>& arr, int left, int mid, int right) {
         }
         k++;
     }
-    while (i < n1) { arr[k] = L[i]; i++; k++; }
-    while (j < n2) { arr[k] = R[j]; j++; k++; }
+
+    // Copy remaining elements of L[], if any
+    while (i < n1) {
+        arr[k] = L[i];
+        i++;
+        k++;
+    }
+
+    // Copy remaining elements of R[], if any
+    while (j < n2) {
+        arr[k] = R[j];
+        j++;
+        k++;
+    }
 }
 
 void mergeSort(vector<int>& arr, int left, int right) {
     if (left < right) {
         int mid = left + (right - left) / 2;
-        mergeSort(arr, left, mid);
-        mergeSort(arr, mid+1, right);
-        merge(arr, left, mid, right);
+        mergeSort(arr, left, mid);   // Sort the left half
+        mergeSort(arr, mid+1, right); // Sort the right half
+        merge(arr, left, mid, right); // Merge the sorted halves
     }
 }
 ```
-**5. Quick Sort** 
+- **Quick Sort** 
 ```cpp
 int partition(vector<int>& arr, int low, int high) {
-    int pivot = arr[high];
-    int i = low - 1;
+    int pivot = arr[high]; // Set pivot element to the last element
+    int i = low - 1; // Initialize smaller index
     for (int j = low; j < high; j++) {
         if (arr[j] < pivot) {
-            i++;
+            i++; // Increment index of smaller element
             swap(arr[i], arr[j]);
         }
     }
-    swap(arr[i+1], arr[high]);
-    return i+1;
+    swap(arr[i + 1], arr[high]); // Place pivot at correct position
+    return i + 1;
 }
 
 void quickSort(vector<int>& arr, int low, int high) {
     if (low < high) {
-        int pi = partition(arr, low, high);
-        quickSort(arr, low, pi - 1);
-        quickSort(arr, pi + 1, high);
+        int pi = partition(arr, low, high); // Partition index
+        quickSort(arr, low, pi - 1);  // Sort left half
+        quickSort(arr, pi + 1, high); // Sort right half
     }
 }
 ```
-**6. Heap Sort**
+- **Heap Sort**
 ```cpp
 void heapify(vector<int>& arr, int n, int i) {
-    int largest = i;
-    int left = 2*i + 1;
-    int right = 2*i + 2;
+    int largest = i; // Initialize largest as root
+    int left = 2 * i + 1; // Left child
+    int right = 2 * i + 2; // Right child
+
+    // If left child is larger than root
     if (left < n && arr[left] > arr[largest]) largest = left;
+    // If right child is larger than largest
     if (right < n && arr[right] > arr[largest]) largest = right;
+
+    // If largest is not root, swap and heapify
     if (largest != i) {
         swap(arr[i], arr[largest]);
         heapify(arr, n, largest);
@@ -173,15 +201,20 @@ void heapify(vector<int>& arr, int n, int i) {
 
 void heapSort(vector<int>& arr) {
     int n = arr.size();
-    for (int i = n/2 - 1; i >= 0; i--) heapify(arr, n, i);
-    for (int i = n-1; i >= 0; i--) {
-        swap(arr[0], arr[i]);
-        heapify(arr, i, 0);
+    // Build a max heap
+    for (int i = n / 2 - 1; i >= 0; i--) {
+        heapify(arr, n, i);
+    }
+
+    // One by one extract elements from heap
+    for (int i = n - 1; i > 0; i--) {
+        swap(arr[0], arr[i]); // Swap root with last element
+        heapify(arr, i, 0);    // Heapify the reduced heap
     }
 }
 ```
 
-**7. Counting Sort** 
+- **Counting Sort** 
 ```cpp
 void countingSort(vector<int>& arr) {
     int maxVal = *max_element(arr.begin(), arr.end());
@@ -195,7 +228,7 @@ void countingSort(vector<int>& arr) {
     for (int i = 0; i < arr.size(); i++) arr[i] = output[i];
 }
 ```
-**8. Radix Sort** 
+- **Radix Sort** 
 ```cpp
 void countingSortRadix(vector<int>& arr, int exp) {
     vector<int> output(arr.size());
@@ -218,8 +251,8 @@ void radixSort(vector<int>& arr) {
 ```
 
 ### Linked List
-
-- **Singly Linked List (Node Structure):**
+- A Linked List is a linear data structure where elements (nodes) are connected using pointers. Each node contains a data part and a pointer to the next node.
+-  **Singly Linked List (Node Structure):**
 ```cpp
 struct Node {
     int data;
@@ -231,7 +264,7 @@ struct Node {
 };
 
 ```
-- **Insertion at the head:**O(1)
+- **Insertion at the head:** O(1)
 ```cpp
 void insertAtHead(Node*& head, int value) {
     Node* newNode = new Node(value);
@@ -239,7 +272,7 @@ void insertAtHead(Node*& head, int value) {
     head = newNode;
 }
 ```
- - **Insertion at the tail:**O(n)
+ - **Insertion at the tail:** O(n)
 ```cpp
 void insertAtTail(Node*& head, int value) {
     Node* newNode = new Node(value);
@@ -252,7 +285,7 @@ void insertAtTail(Node*& head, int value) {
     temp->next = newNode;
 }
 ```
- - **Insertion at a specific position:**O(n)
+ - **Insertion at a specific position:** O(n)
 ```cpp
 void insertAtPosition(Node*& head, int value, int position) {
     if (position == 1) {
@@ -269,7 +302,7 @@ void insertAtPosition(Node*& head, int value, int position) {
     temp->next = newNode;
 }
 ```
- - **Deletion from the head:**O(1)
+ - **Deletion from the head:** O(1)
 ```cpp
 void deleteAtHead(Node*& head) {
     if (head == NULL) return;
@@ -278,7 +311,7 @@ void deleteAtHead(Node*& head) {
     delete temp;
 }
 ```
- - **Deletion from the tail:**O(n)
+ - **Deletion from the tail:** O(n)
 ```cpp
 void deleteAtTail(Node*& head) {
     if (head == NULL) return;
@@ -295,7 +328,7 @@ void deleteAtTail(Node*& head) {
     temp->next = NULL;
 }
 ```
-- **Deletion at a specific position:**O(n)
+- **Deletion at a specific position:** O(n)
 ```cpp
 void deleteAtPosition(Node*& head, int position) {
     if (position == 1) {
@@ -313,7 +346,7 @@ void deleteAtPosition(Node*& head, int position) {
     delete toDelete;
 }
 ```
-- **Display List:**O(n)
+- **Display List:** O(n)
 ```cpp
 void displayList(Node* head) {
     Node* temp = head;
@@ -339,7 +372,7 @@ void displayList(Node* head) {
 ``` 
 
 ### Stack
-
+- A Stack is a linear data structure that follows the LIFO (Last In, First Out) principle.
 - **Node Structure (Stack):**
 ```cpp
 struct Node {
@@ -370,7 +403,7 @@ int pop(Node*& top) {
 ```
 
 ### Queue
-
+- A Queue is a linear data structure that follows the FIFO (First In, First Out) principle.
 - **Node Structure (Queue):**
 ```cpp
 struct Node {
@@ -543,7 +576,9 @@ pq.pop();
 ---
 
 ### Binary Search Tree (BST)
-
+- A Binary Search Tree (BST) is a binary tree with the property that for each node:
+    - All nodes in the left subtree have values less than the node.
+    - All nodes in the right subtree have values greater than the node.
 - **Node Structure (Binary Search Tree):**
 ```cpp
 struct Node {
