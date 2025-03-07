@@ -481,7 +481,7 @@ struct HeapNode {
 
 #### **Basic Heap Operations**
 
-- **Insert Element in Heap**: \( O(\log n) \)
+- **Insert Element in Heap**: \( O(log n) \)
 ```cpp
 void insertHeap(vector<int>& heap, int value) {
     heap.push_back(value); // Add to the end of the heap
@@ -500,7 +500,7 @@ void insertHeap(vector<int>& heap, int value) {
 }
 ```
 
-- **Extract Min/Max from Heap**: \( O(\log n) \)
+- **Extract Min/Max from Heap**: \( O(log n) \)
 ```cpp
 int extractMin(vector<int>& heap) {
     if (heap.size() == 0) return -1; // Heap is empty
@@ -574,7 +574,7 @@ void buildMinHeap(vector<int>& heap) {
 }
 ```
 
-- **Heap Sort**: \( O(n \log n) \)
+- **Heap Sort**: \( O(n log n) \)
 ```cpp
 void heapSort(vector<int>& arr) {
     buildMinHeap(arr);
@@ -667,7 +667,7 @@ int height(TreeNode* root) {
     return max(height(root->left), height(root->right)) + 1;
 }
 ```
-- **Search in BST**:** O(logn)
+- **Search in BST**: O(logn)
 ```cpp
 TreeNode* search(TreeNode* root, int key) {
     if (root == NULL || root->data == key) return root;
