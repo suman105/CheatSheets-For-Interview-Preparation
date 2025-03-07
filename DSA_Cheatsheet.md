@@ -286,7 +286,7 @@ pq.pop();
 ---
 
 ## 3. Sorting Algorithms
-** 1. Bubble Sort ** 
+**1. Bubble Sort** 
 ```cpp
 void bubbleSort(vector<int>& arr) {
     int n = arr.size();
@@ -299,7 +299,7 @@ void bubbleSort(vector<int>& arr) {
     }
 }
 ```
-** 2. Selection Sort **
+**2. Selection Sort**
 ```cpp
 void selectionSort(vector<int>& arr) {
     int n = arr.size();
