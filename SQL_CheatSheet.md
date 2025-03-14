@@ -340,4 +340,4 @@ SELECT department, COUNT(*) FROM employees GROUP BY department HAVING COUNT(*) >
 
 ---
 
-This comprehensive overview covers the essential aspects of SQL, including basic commands, filtering, sorting, aggregating data, joins, subqueries, set operations, data modification, indexing, transactions, views, triggers, CTEs, window functions, date and time functions, and conditional logic. Mastering these concepts will enable you to effectively manage and manipulate relational databases.
+- This comprehensive overview covers the essential aspects of SQL, including basic commands, filtering, sorting, aggregating data, joins, subqueries, set operations, data modification, indexing, transactions, views, triggers, CTEs, window functions, date and time functions, and conditional logic. Mastering these concepts will enable you to effectively manage and manipulate relational databases.
