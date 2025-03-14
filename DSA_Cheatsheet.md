@@ -588,34 +588,48 @@ void insertHeap(vector<int>& heap, int value) {
 - **Extract Min/Max from Heap**: \( O(log n) \)
 ```cpp
 int extractMin(vector<int>& heap) {
+    // If the heap is empty, return -1 as there is no element to extract
     if (heap.size() == 0) return -1; // Heap is empty
     
-    // Swap the root with the last element and remove the last element
+    // Swap the root (min element) with the last element in the heap
+    // This is done to remove the root and prepare the heap for heapify operation
     swap(heap[0], heap[heap.size() - 1]);
+    
+    // Store the min value (which is now at the last element before removing it)
     int minValue = heap.back();
+    
+    // Remove the last element (which was the original root)
     heap.pop_back();
     
-    // Heapify down (bubble down)
-    int index = 0;
+    // Heapify down (bubble down) the new root element to restore heap property
+    int index = 0;  // Start at the root of the heap
     while (index < heap.size()) {
-        int leftChildIndex = 2 * index + 1;
-        int rightChildIndex = 2 * index + 2;
-        int smallest = index;
+        int leftChildIndex = 2 * index + 1;   // Left child index
+        int rightChildIndex = 2 * index + 2;  // Right child index
+        int smallest = index; // Assume the smallest element is the current index
         
+        // If the left child exists and is smaller than the current smallest, update smallest
         if (leftChildIndex < heap.size() && heap[leftChildIndex] < heap[smallest]) {
             smallest = leftChildIndex;
         }
         
+        // If the right child exists and is smaller than the current smallest, update smallest
         if (rightChildIndex < heap.size() && heap[rightChildIndex] < heap[smallest]) {
             smallest = rightChildIndex;
         }
         
+        // If the smallest element is the current index, the heap property is restored
+        // Break out of the loop as no further bubbling down is needed
         if (smallest == index) break;
         
+        // Swap the current element with the smallest child to move the smaller element up
         swap(heap[index], heap[smallest]);
+        
+        // Move to the index of the child that was swapped
         index = smallest;
     }
     
+    // Return the original root (min value) that was extracted
     return minValue;
 }
 ```
@@ -631,21 +645,30 @@ int peekMin(const vector<int>& heap) {
 - **Heapify an Array**: \( O(n) \)
 ```cpp
 void heapify(vector<int>& heap, int n, int index) {
+    // Calculate the indices of the left and right children of the current node
     int leftChild = 2 * index + 1;
     int rightChild = 2 * index + 2;
+    
+    // Assume the smallest element is at the current index
     int smallest = index;
 
+    // If the left child exists and is smaller than the current smallest element, update smallest
     if (leftChild < n && heap[leftChild] < heap[smallest]) {
         smallest = leftChild;
     }
+
+    // If the right child exists and is smaller than the current smallest element, update smallest
     if (rightChild < n && heap[rightChild] < heap[smallest]) {
         smallest = rightChild;
     }
+
+    // If the smallest element is not at the current index, swap the elements and continue heapifying
     if (smallest != index) {
-        swap(heap[index], heap[smallest]);
-        heapify(heap, n, smallest);
+        swap(heap[index], heap[smallest]);  // Swap the elements to maintain heap property
+        heapify(heap, n, smallest);         // Recursively heapify the affected subtree
     }
 }
+
 ```
 
 - **Build Min Heap**: \( O(n) \)
