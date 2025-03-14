@@ -1,4 +1,3 @@
-
 # Data Structures & Algorithms (DSA) Cheatsheet
 
 ## 1. Time & Space Complexity
@@ -405,64 +404,150 @@ struct DNode {
 - A Stack is a linear data structure that follows the LIFO (Last In, First Out) principle.
 - **Node Structure (Stack):**
 ```cpp
-struct Node {
-    int data;
-    Node* next;
+// Stack class
+class Stack {
+private:
+    int arr[MAX];  // Array to store stack elements
+    int top;       // Index of the top element in the stack
+
+public:
+    // Constructor to initialize the stack
+    Stack() {
+        top = -1;  // Stack is initially empty
+    }
+
+    // Function to check if the stack is full
+    bool isFull() {
+        return top == MAX - 1;
+    }
+
+    // Function to check if the stack is empty
+    bool isEmpty() {
+        return top == -1;
+    }
+
+    // Function to push an element onto the stack
+    void push(int value) {
+        if (isFull()) {
+            cout << "Stack Overflow!" << endl;
+            return;
+        }
+        arr[++top] = value;  // Increment top and insert value
+        cout << value << " pushed to stack" << endl;
+    }
+
+    // Function to pop an element from the stack
+    int pop() {
+        if (isEmpty()) {
+            cout << "Stack Underflow!" << endl;
+            return -1;
+        }
+        return arr[top--];  // Return top value and decrement top
+    }
+
+    // Function to return the top element of the stack
+    int peek() {
+        if (isEmpty()) {
+            cout << "Stack is empty!" << endl;
+            return -1;
+        }
+        return arr[top];  // Return the top element
+    }
+
+    // Function to display the stack elements
+    void display() {
+        if (isEmpty()) {
+            cout << "Stack is empty!" << endl;
+            return;
+        }
+        cout << "Stack: ";
+        for (int i = top; i >= 0; i--) {
+            cout << arr[i] << " ";
+        }
+        cout << endl;
+    }
 };
-```
-
-- **Operations:**
-```cpp
-// Push to stack
-void push(Node*& top, int value) {
-    Node* newNode = new Node;
-    newNode->data = value;
-    newNode->next = top;
-    top = newNode;
-}
-
-// Pop from stack
-int pop(Node*& top) {
-    if (top == nullptr) return -1; // Stack is empty
-    Node* temp = top;
-    int value = top->data;
-    top = top->next;
-    delete temp;
-    return value;
-}
 ```
 
 ### Queue
 - A Queue is a linear data structure that follows the FIFO (First In, First Out) principle.
 - **Node Structure (Queue):**
 ```cpp
-struct Node {
-    int data;
-    Node* next;
+#define MAX 100 // Maximum size of the queue
+
+// Queue class
+class Queue {
+private:
+    int arr[MAX];  // Array to store queue elements
+    int front;     // Index of the front element in the queue
+    int rear;      // Index of the rear element in the queue
+
+public:
+    // Constructor to initialize the queue
+    Queue() {
+        front = -1;  // Queue is initially empty
+        rear = -1;
+    }
+
+    // Function to check if the queue is empty
+    bool isEmpty() {
+        return front == -1; // If front is -1, the queue is empty
+    }
+
+    // Function to check if the queue is full
+    bool isFull() {
+        return rear == MAX - 1; // If rear is at the maximum index, the queue is full
+    }
+
+    // Function to enqueue (insert) an element into the queue
+    void enqueue(int value) {
+        if (isFull()) {
+            cout << "Queue Overflow!" << endl;
+            return;
+        }
+        if (front == -1) front = 0; // If queue is empty, set front to 0
+        arr[++rear] = value; // Insert value at rear and increment rear
+        cout << value << " enqueued to queue" << endl;
+    }
+
+    // Function to dequeue (remove) an element from the queue
+    int dequeue() {
+        if (isEmpty()) {
+            cout << "Queue Underflow!" << endl;
+            return -1;
+        }
+        int value = arr[front]; // Get the value at the front
+        if (front == rear) {    // If there is only one element
+            front = rear = -1;  // Reset the queue
+        } else {
+            front++;            // Increment front to remove the element
+        }
+        return value; // Return the dequeued value
+    }
+
+    // Function to return the front element of the queue
+    int peek() {
+        if (isEmpty()) {
+            cout << "Queue is empty!" << endl;
+            return -1;
+        }
+        return arr[front]; // Return the element at the front
+    }
+
+    // Function to display the queue elements
+    void display() {
+        if (isEmpty()) {
+            cout << "Queue is empty!" << endl;
+            return;
+        }
+        cout << "Queue: ";
+        for (int i = front; i <= rear; i++) {
+            cout << arr[i] << " ";
+        }
+        cout << endl;
+    }
 };
-```
 
-- **Operations:**
-```cpp
-// Enqueue (Insert)
-void enqueue(Node*& front, Node*& rear, int value) {
-    Node* newNode = new Node;
-    newNode->data = value;
-    newNode->next = nullptr;
-    if (rear != nullptr) rear->next = newNode;
-    rear = newNode;
-    if (front == nullptr) front = newNode;
-}
-
-// Dequeue (Remove)
-int dequeue(Node*& front) {
-    if (front == nullptr) return -1; // Queue is empty
-    Node* temp = front;
-    int value = front->data;
-    front = front->next;
-    delete temp;
-    return value;
-}
 ```
 
 
@@ -611,97 +696,177 @@ pq.pop();
     - All nodes in the right subtree have values greater than the node.
 - **Node Structure (Binary Search Tree):**
 ```cpp
+// Definition for a Binary Tree Node
 struct Node {
-    int data;
-    Node* left;
-    Node* right;
+    int data;   // Stores the value of the node
+    Node* left;  // Pointer to the left child
+    Node* right; // Pointer to the right child
+
+    // Constructor to initialize a new node
+    Node(int val) : data(val), left(NULL), right(NULL) {}
 };
 ```
 
 #### Basic Tree Operations
 - **Insert Node (BST):** O(logn)
 ```cpp
+// Function to insert a value into a Binary Search Tree (BST)
 TreeNode* insert(TreeNode* root, int value) {
+    // Base case: If the tree is empty, create a new node and return it
     if (root == NULL) {
-        return new TreeNode{value};
+        return new TreeNode(value);
     }
+
+    // If the value to insert is smaller, recurse on the left subtree
     if (value < root->data) {
         root->left = insert(root->left, value);
-    } else {
+    } 
+    // If the value to insert is greater, recurse on the right subtree
+    else {
         root->right = insert(root->right, value);
     }
+
+    // Return the unchanged root pointer
     return root;
 }
 ```
 - **In-order Traversal:** O(n)
 ```cpp
+// Function to perform inorder traversal of a Binary Tree
 void inorder(TreeNode* root) {
-    if (root == NULL) return;
+    // Base case: If the tree is empty, return
+    if (root == NULL) 
+        return;
+
+    // Recursively visit the left subtree
     inorder(root->left);
+
+    // Process the current node (print its data)
     cout << root->data << " ";
+
+    // Recursively visit the right subtree
     inorder(root->right);
 }
 ```
 - **Pre-order Traversal:** O(n)
 ```cpp
+// Function to perform preorder traversal of a Binary Tree
 void preorder(TreeNode* root) {
-    if (root == NULL) return;
+    // Base case: If the tree is empty, return
+    if (root == NULL) 
+        return;
+
+    // Process the current node (print its data)
     cout << root->data << " ";
+
+    // Recursively visit the left subtree
     preorder(root->left);
+
+    // Recursively visit the right subtree
     preorder(root->right);
 }
 ```
 - **Post-order Traversal:** O(n)
 ```cpp
+// Function to perform postorder traversal of a Binary Tree
 void postorder(TreeNode* root) {
-    if (root == NULL) return;
+    // Base case: If the tree is empty, return
+    if (root == NULL) 
+        return;
+
+    // First, recursively visit the left subtree
     postorder(root->left);
+
+    // Then, recursively visit the right subtree
     postorder(root->right);
+
+    // Finally, process the current node (print its data)
     cout << root->data << " ";
 }
 ```
 - **Height of Tree:** O(n)
 ```cpp
+// Function to calculate the height of a Binary Tree
 int height(TreeNode* root) {
-    if (root == NULL) return 0;
+    // Base case: If the tree is empty, height is 0
+    if (root == NULL) 
+        return 0;
+
+    // Recursively compute the height of the left and right subtrees
+    // The height of the tree is the maximum height of the left or right subtree plus 1 (for the root)
     return max(height(root->left), height(root->right)) + 1;
 }
 ```
 - **Search in BST**: O(logn)
 ```cpp
+// Function to search for a key in a Binary Search Tree (BST)
 TreeNode* search(TreeNode* root, int key) {
-    if (root == NULL || root->data == key) return root;
-    if (key < root->data) return search(root->left, key);
+    // Base case: If the tree is empty or the key is found at the root
+    if (root == NULL || root->data == key) 
+        return root;
+
+    // If the key is smaller than the root's key, search in the left subtree
+    if (key < root->data) 
+        return search(root->left, key);
+
+    // If the key is greater than the root's key, search in the right subtree
     return search(root->right, key);
 }
 ```
 - **Delete Node in BST:** O(logn)
 ```cpp
+// Function to delete a node from a Binary Search Tree (BST)
 TreeNode* deleteNode(TreeNode* root, int key) {
+    // Base case: If the tree is empty or key is not found
     if (root == NULL) return root;
-    if (key < root->data) root->left = deleteNode(root->left, key);
-    else if (key > root->data) root->right = deleteNode(root->right, key);
+
+    // If the key is smaller than the root's key, it lies in the left subtree
+    if (key < root->data) {
+        root->left = deleteNode(root->left, key);
+    }
+    // If the key is greater than the root's key, it lies in the right subtree
+    else if (key > root->data) {
+        root->right = deleteNode(root->right, key);
+    }
+    // If the key is the same as root's key, then this is the node to be deleted
     else {
+        // Case 1: Node has no left child
         if (root->left == NULL) {
-            TreeNode* temp = root->right;
-            delete root;
-            return temp;
-        } else if (root->right == NULL) {
-            TreeNode* temp = root->left;
-            delete root;
-            return temp;
+            TreeNode* temp = root->right; // Store the right child
+            delete root; // Delete the current node
+            return temp; // Return the right child to maintain BST structure
         }
+        // Case 2: Node has no right child
+        else if (root->right == NULL) {
+            TreeNode* temp = root->left; // Store the left child
+            delete root; // Delete the current node
+            return temp; // Return the left child to maintain BST structure
+        }
+
+        // Case 3: Node has two children
+        // Find the inorder successor (smallest node in the right subtree)
         TreeNode* temp = minValueNode(root->right);
+        
+        // Copy the inorder successor's value to this node
         root->data = temp->data;
+        
+        // Delete the inorder successor from the right subtree
         root->right = deleteNode(root->right, temp->data);
     }
-    return root;
+
+    return root; // Return the modified root node
 }
 
+// Function to find the node with the smallest value in a BST
 TreeNode* minValueNode(TreeNode* node) {
     TreeNode* current = node;
-    while (current && current->left != NULL) current = current->left;
-    return current;
+
+    // The leftmost leaf will have the smallest value
+    while (current && current->left != NULL) {
+        current = current->left;
+    }
+
+    return current; // Return the node with the smallest value
 }
 ```
 
