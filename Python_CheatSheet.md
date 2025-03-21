@@ -415,7 +415,7 @@ product = reduce(lambda x, y: x * y, nums)
 print(product)  # Output: 24
 ```
 
-### 6.4 List Comprehensions
+#### 6.4 List Comprehensions
 - List comprehensions provide a concise way to create lists in a functional programming style.
 ```sh
 nums = [1, 2, 3, 4]
