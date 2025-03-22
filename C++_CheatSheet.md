@@ -679,49 +679,49 @@ list<int> movedList(move(myList));  // Move elements from another list
 
 ### 3.6.2  Inserting Elements
 ```sh
-# Push Elements at the Front and Back
-myList.push_back(10);  # Add element to the end
-myList.push_front(5);  # Add element to the beginning
+// Push Elements at the Front and Back
+myList.push_back(10);  // Add element to the end
+myList.push_front(5);  // Add element to the beginning
 
-# Insert at a Specific Position
+// Insert at a Specific Position
 auto it = myList.begin();
-std::advance(it, 2);  # Move iterator to the 3rd position (0-based index)
-myList.insert(it, 99);  # Insert 99 at the 3rd position
+std::advance(it, 2);  // Move iterator to the 3rd position (0-based index)
+myList.insert(it, 99);  // Insert 99 at the 3rd position
 
-# Insert Multiple Elements
-myList.insert(it, 3, 20);  # Insert three 20s at the specified position
+// Insert Multiple Elements
+myList.insert(it, 3, 20);  // Insert three 20s at the specified position
 
-# Insert from Another List
+// Insert from Another List
 std::list<int> anotherList = {50, 60};
-myList.insert(it, anotherList.begin(), anotherList.end());  # Insert another list's elements
+myList.insert(it, anotherList.begin(), anotherList.end());  // Insert another list's elements
 
-# Emplace (Avoids Copy Overhead)
-myList.emplace(myList.begin(), 42);  # Efficiently inserts 42 at the beginning
+// Emplace (Avoids Copy Overhead)
+myList.emplace(myList.begin(), 42);  // Efficiently inserts 42 at the beginning
 
 ```
 
 ### 3.6.3 Deleting Elements
 ```sh
-#  Remove Specific Element
-myList.remove(99);  # Removes all occurrences of 99
+//  Remove Specific Element
+myList.remove(99);  // Removes all occurrences of 99
 
-# Erase an Element by Position
+// Erase an Element by Position
 auto it = myList.begin();
-std::advance(it, 2);  # Move iterator to the 3rd element
-myList.erase(it);  # Remove element at that position
+std::advance(it, 2);  // Move iterator to the 3rd element
+myList.erase(it);  // Remove element at that position
 
-# Erase a Range of Elements
+// Erase a Range of Elements
 auto start = myList.begin();
 auto end = myList.begin();
-std::advance(end, 3);  # Move end iterator to the 4th element
-myList.erase(start, end);  # Remove elements from 1st to 3rd position
+std::advance(end, 3);  // Move end iterator to the 4th element
+myList.erase(start, end);  // Remove elements from 1st to 3rd position
 
-# Pop Elements from Front and Back
-myList.pop_front();  # Removes first element
-myList.pop_back();   # Removes last element
+// Pop Elements from Front and Back
+myList.pop_front();  // Removes first element
+myList.pop_back();   // Removes last element
 
-# Clear the List
-myList.clear();  # Removes all elements
+// Clear the List
+myList.clear();  // Removes all elements
 ```
 
 ### 3.6.6 Checking Size and Emptiness
@@ -749,18 +749,18 @@ if (it != myList.end()) {
 
 ### 3.6.8 Iterating Over a List
 ```sh
-# Using a `for` Loop
+// Using a `for` Loop
 for (const auto& elem : myList) 
 {
     std::cout << elem << " ";
 }
 
-# Using Iterators
+// Using Iterators
 for (auto it = myList.begin(); it != myList.end(); ++it) {
     std::cout << *it << " ";
 }
 
-# Reverse Iteration
+// Reverse Iteration
 for (auto it = myList.rbegin(); it != myList.rend(); ++it) {
     std::cout << *it << " ";
 }
@@ -768,87 +768,87 @@ for (auto it = myList.rbegin(); it != myList.rend(); ++it) {
 
 ### 3.6.9 Sorting and Reversing
 ```sh
-# Sorting a List
-myList.sort();  # Sorts in ascending order
+// Sorting a List
+myList.sort();  // Sorts in ascending order
 
-# Sorting with a Custom Comparator
-myList.sort([](int a, int b) { return a > b; });  # Sorts in descending order
+// Sorting with a Custom Comparator
+myList.sort([](int a, int b) { return a > b; });  // Sorts in descending order
 
-# Reversing a List
+// Reversing a List
 myList.reverse();
 ```
 
 ### 3.6.10 Merging and Splicing
 ```sh
-# Merging Two Sorted Lists
+// Merging Two Sorted Lists
 std::list<int> list1 = {1, 3, 5};
 std::list<int> list2 = {2, 4, 6};
-list1.merge(list2);  # Merges list2 into list1
+list1.merge(list2);  // Merges list2 into list1
 
-# Splicing (Move Elements from One List to Another)
+// Splicing (Move Elements from One List to Another)
 std::list<int> source = {7, 8, 9};
 std::list<int> destination = {1, 2, 3};
 
-# Move all elements from source to destination
+// Move all elements from source to destination
 destination.splice(destination.end(), source);
 ```
 
-# 3.6.11 Removing Duplicates
+### 3.6.11 Removing Duplicates
 ```sh
-myList.unique();  # Removes consecutive duplicate elements
+myList.unique();  // Removes consecutive duplicate elements
 ```
 
 ## 3.7 Queue
 #### 3.7.1 Definition and Initialization
 ```sh
 #include <queue>
-queue<int> myQueue;  # Empty queue
-queue<int> myQueue({1, 2, 3, 4, 5});  # C++17 and later (optional)
-queue<int> queueCopy(myQueue);  # Copy an existing queue
-queue<int> movedQueue(move(myQueue));  # Move contents of an existing queue
+queue<int> myQueue;  // Empty queue
+queue<int> myQueue({1, 2, 3, 4, 5});  // C++17 and later (optional)
+queue<int> queueCopy(myQueue);  // Copy an existing queue
+queue<int> movedQueue(move(myQueue));  // Move contents of an existing queue
 ```
 
 #### 3.7.2 Basic Operations
 ```sh
-myQueue.push(10);  # Insert element at the back
-myQueue.pop();  # Removes the front element
+myQueue.push(10);  // Insert element at the back
+myQueue.pop();  // Removes the front element
 
-std::cout << "Front: " << myQueue.front() << std::endl;
-std::cout << "Back: " << myQueue.back() << std::endl;
+cout << "Front: " << myQueue.front() << endl;
+cout << "Back: " << myQueue.back() << endl;
 
-myQueue.size() # Calculate the Size
-myQueue.empty() # Returns True if it is Empty
+myQueue.size() // Calculate the Size
+myQueue.empty() // Returns True if it is Empty
 ```
 
 #### 3.7.3 Iterating Over a Queue
 ```sh
-std::queue<int> tempQueue = myQueue;  # Create a copy to avoid modifying original queue
+std::queue<int> tempQueue = myQueue;  // Create a copy to avoid modifying original queue
 
 while (!tempQueue.empty()) {
     std::cout << tempQueue.front() << " ";
-    tempQueue.pop();  # Remove the processed element
+    tempQueue.pop();  // Remove the processed element
 }
 ```
 #### 3.7.4 Priority Queue (`std::priority_queue`) & Deque
 ```sh
-# Max-Heap Priority Queue (By Default)
+// Max-Heap Priority Queue (By Default)
 priority_queue<int> pq;
 pq.push(3);
 pq.push(5);
 pq.push(1);
 
-cout << pq.top() << endl;  # Output: 5 (largest element)
-pq.pop();  # Removes 5
+cout << pq.top() << endl;  // Output: 5 (largest element)
+pq.pop();  // Removes 5
 
-# Min-Heap Priority Queue
+// Min-Heap Priority Queue
 priority_queue<int, vector<int>, greater<int>> minHeap;
 minHeap.push(3);
 minHeap.push(5);
 minHeap.push(1);
 
-cout << minHeap.top() << endl;  # Output: 1 (smallest element)
+cout << minHeap.top() << endl;  // Output: 1 (smallest element)
 
-# A queue that supports efficient insertions and deletions from both ends.
+// A queue that supports efficient insertions and deletions from both ends.
 deque<int> dq = {1, 2, 3};
 queue<int, deque<int>> dequeQueue(dq);
 ```
@@ -857,24 +857,24 @@ queue<int, deque<int>> dequeQueue(dq);
 ### 3.8.1 Definition and Initialization
 ```sh
 #include <stack>
-stack<int> myStack;  # Empty stack
-stack<int> myStack({1, 2, 3, 4, 5});  # Not standard in all compilers
-stack<int> stackCopy(myStack);  # Copy constructor
-stack<int> movedStack(move(myStack));  # Move contents
+stack<int> myStack;  // Empty stack
+stack<int> myStack({1, 2, 3, 4, 5});  // Not standard in all compilers
+stack<int> stackCopy(myStack);  // Copy constructor
+stack<int> movedStack(move(myStack));  // Move contents
 ```
 
 ### 3.8.2 Basic Operations
 ```sh
 myStack.push(10);
-myStack.pop();  # Removes the top element
+myStack.pop();  // Removes the top element
 cout << "Top: " << myStack.top() << endl;
-myStack.size()  # Calculates the size 
-myStack.empty() # Check whether the stack is Empty ot not
+myStack.size()  // Calculates the size 
+myStack.empty() // Check whether the stack is Empty ot not
 ```
 
 ### 3.8.3 Iterating Over a Stack
 ```sh
-stack<int> tempStack = myStack;  # Create a copy to avoid modifying original stack
+stack<int> tempStack = myStack;  // Create a copy to avoid modifying original stack
 
 while (!tempStack.empty()) {
     cout << tempStack.top() << " ";
@@ -909,15 +909,15 @@ using namespace std;
 
 class BankAccount {
 private:
-    double balance;  # Private data member
+    double balance;  // Private data member
 
 public:
-    # Constructor to initialize balance
+    // Constructor to initialize balance
     BankAccount(double initialBalance) {
         balance = (initialBalance >= 0) ? initialBalance : 0;
     }
 
-    # Public methods to interact with private data
+    // Public methods to interact with private data
     void deposit(double amount) { balance += amount; }
     void withdraw(double amount) { if (amount <= balance) balance -= amount; }
     double getBalance() { return balance; }
@@ -927,7 +927,7 @@ int main() {
     BankAccount account(1000);
     account.deposit(500);
     account.withdraw(300);
-    cout << "Balance: $" << account.getBalance() << endl;  # Output: Balance: $1200
+    cout << "Balance: $" << account.getBalance() << endl;  // Output: Balance: $1200
     return 0;
 }
 ```
@@ -937,7 +937,7 @@ int main() {
 #include <iostream>
 using namespace std;
 
-# Base class (Parent)
+// Base class (Parent)
 class Animal {
 public:
     void eat() {
@@ -969,7 +969,7 @@ using namespace std;
 
 class Math {
 public:
-    # Function Overloading: Same function name, different parameters
+    // Function Overloading: Same function name, different parameters
     int add(int a, int b) {
         return a + b;
     }
@@ -981,8 +981,8 @@ public:
 
 int main() {
     Math obj;
-    cout << obj.add(5, 3) << endl;     # Output: 8
-    cout << obj.add(2.5, 1.5) << endl; # Output: 4.0
+    cout << obj.add(5, 3) << endl;     // Output: 8
+    cout << obj.add(2.5, 1.5) << endl; // Output: 4.0
     return 0;
 }
 ```
@@ -1016,10 +1016,10 @@ int main() {
 #include <iostream>
 using namespace std;
 
-# Abstract class (interface)
+// Abstract class (interface)
 class Shape {
 public:
-    virtual void draw() = 0;  # Pure virtual function
+    virtual void draw() = 0;  // Pure virtual function
 };
 
 class Circle : public Shape {
@@ -1040,8 +1040,8 @@ int main() {
     Shape* shape1 = new Circle();
     Shape* shape2 = new Rectangle();
 
-    shape1->draw();  # Output: Drawing a Circle
-    shape2->draw();  # Output: Drawing a Rectangle
+    shape1->draw();  // Output: Drawing a Circle
+    shape2->draw();  // Output: Drawing a Rectangle
 
     delete shape1;
     delete shape2;
@@ -1060,7 +1060,7 @@ private:
     int speed;
 
 public:
-    # Constructor
+    // Constructor
     Car(string b, int s) {
         brand = b;
         speed = s;
@@ -1092,8 +1092,8 @@ public:
 };
 
 int main() {
-    Car myCar;  # Constructor is called automatically
-    return 0;   # Destructor is called automatically when object goes out of scope
+    Car myCar;  // Constructor is called automatically
+    return 0;   // Destructor is called automatically when object goes out of scope
 }
 
 ``` 
