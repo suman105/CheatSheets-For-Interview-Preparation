@@ -9,63 +9,63 @@ g++ --version
 ```
 ### 1.2 Variables & Data Types
 ```sh
-int x = 10;         # Integer
-float y = 3.14f;    # Float
-double z = 3.1415;  # Double
-char c = 'A';       # Char
-bool flag = true;   # Boolean
-string str = "Hello"; # String (using <string> header)
+int x = 10;         // Integer
+float y = 3.14f;    // Float
+double z = 3.1415;  // Double
+char c = 'A';       // Char
+bool flag = true;   // Boolean
+string str = "Hello"; // String (using <string> header)
 ```
 
 ### 1.3 Conditional Statements
 ```sh
 if (x > 5) {
-    # code to execute
+    // code to execute
 } else if (x == 5) {
-    # code to execute
+    // code to execute
 } else {
-    # code to execute
+    // code to execute
 }
 ```
 
 ### 1.4 Loops
 ```sh
-# Basic for loop
+// Basic for loop
 for (int i = 0; i < n; ++i) {
-    # code to execute
+    // code to execute
 }
 
-# For loop with multiple variables
+// For loop with multiple variables
 for (int i = 0, j = n - 1; i < j; ++i, --j) {
-    # code to execute
+    // code to execute
 }
 
-# Range-based for loop (C++11 and above)
+// Range-based for loop (C++11 and above)
 for (const auto& elem : container) {
-    # code to execute
+    // code to execute
 }
 
-# While loop
+// While loop
 int n = 0;
 while (n < 5) {
-    # code to execute
+    // code to execute
 }
 
-# do while loop
+// do while loop
 do {
-    # code to execute
+    // code to execute
 } while (condition);
 ```
 
 ### 1.5 String, Char, Integer Conversion
 ```sh
-# Convert int to string
+// Convert int to string
 to_string(num);
-# Convert string to int
+// Convert string to int
 stoi(s);
-# Convert char to string
+// Convert char to string
 string(1, ch);
-# Convert char array to string
+// Convert char array to string
 string(charArr);
 ```
 
@@ -76,7 +76,7 @@ void greet() {
     cout << "Hello, world!" << endl;
 }
 
-greet();  # Output: Hello, world!
+greet();  // Output: Hello, world!
 ```
 ### 2.2 Function With Parameters
 ```sh
@@ -84,7 +84,7 @@ void greet(string name) {
     cout << "Hello, " << name << "!" << endl;
 }
 
-greet("Shreyas");  # Output: Hello, Shreyas!
+greet("Shreyas");  // Output: Hello, Shreyas!
 ```
 ### 2.3 Function With Return Value
 ```sh
@@ -92,7 +92,7 @@ int add(int a, int b) {
     return a + b;
 }
 
-int result = add(5, 3);  # Output: 8
+int result = add(5, 3);  // Output: 8
 cout << result << endl;
 ```
 ### 2.4 Function With Default Parameters
@@ -101,16 +101,16 @@ void greet(string name = "Guest") {
     cout << "Hello, " << name << "!" << endl;
 }
 
-greet();           # Output: Hello, Guest!
-greet("Shreyas");  # Output: Hello, Shreyas!
+greet();           // Output: Hello, Guest!
+greet("Shreyas");  // Output: Hello, Shreyas!
 ```
 ### 2.5 Lambda Functions
 ```sh
 auto square = [](int x) { return x * x; };
-cout << square(5) << endl;  # Output: 25
+cout << square(5) << endl;  // Output: 25
 
 auto add = [](int x, int y) { return x + y; };
-cout << add(3, 4) << endl;  # Output: 7
+cout << add(3, 4) << endl;  // Output: 7
 ```
 ### 2.6 Function With Multiple Parameters
 ```sh
@@ -118,7 +118,7 @@ int add(int a, int b, int c) {
     return a + b + c;
 }
 
-cout << add(1, 2, 3) << endl;  # Output: 6
+cout << add(1, 2, 3) << endl;  // Output: 6
 ```
 
 ## 3. Data Structures
