@@ -3,18 +3,18 @@
 ## 1. Basics
 
 ### 1.1 Install C++
-Download from [C++](https://isocpp.org/get-started) and verify installation:
+Download from [C++](https:#isocpp.org/get-started) and verify installation:
 ```sh
 g++ --version
 ```
 ### 1.2 Variables & Data Types
 ```sh
-int x = 10;         // Integer
-float y = 3.14f;    // Float
-double z = 3.1415;  // Double
-char c = 'A';       // Char
-bool flag = true;   // Boolean
-string str = "Hello"; // String (using <string> header)
+int x = 10;         # Integer
+float y = 3.14f;    # Float
+double z = 3.1415;  # Double
+char c = 'A';       # Char
+bool flag = true;   # Boolean
+string str = "Hello"; # String (using <string> header)
 ```
 
 ### 1.3 Conditional Statements
@@ -76,7 +76,7 @@ void greet() {
     cout << "Hello, world!" << endl;
 }
 
-greet();  // Output: Hello, world!
+greet();  # Output: Hello, world!
 ```
 ### 2.2 Function With Parameters
 ```sh
@@ -84,7 +84,7 @@ void greet(string name) {
     cout << "Hello, " << name << "!" << endl;
 }
 
-greet("Shreyas");  // Output: Hello, Shreyas!
+greet("Shreyas");  # Output: Hello, Shreyas!
 ```
 ### 2.3 Function With Return Value
 ```sh
@@ -92,7 +92,7 @@ int add(int a, int b) {
     return a + b;
 }
 
-int result = add(5, 3);  // Output: 8
+int result = add(5, 3);  # Output: 8
 cout << result << endl;
 ```
 ### 2.4 Function With Default Parameters
@@ -101,16 +101,16 @@ void greet(string name = "Guest") {
     cout << "Hello, " << name << "!" << endl;
 }
 
-greet();           // Output: Hello, Guest!
-greet("Shreyas");  // Output: Hello, Shreyas!
+greet();           # Output: Hello, Guest!
+greet("Shreyas");  # Output: Hello, Shreyas!
 ```
 ### 2.5 Lambda Functions
 ```sh
 auto square = [](int x) { return x * x; };
-cout << square(5) << endl;  // Output: 25
+cout << square(5) << endl;  # Output: 25
 
 auto add = [](int x, int y) { return x + y; };
-cout << add(3, 4) << endl;  // Output: 7
+cout << add(3, 4) << endl;  # Output: 7
 ```
 ### 2.6 Function With Multiple Parameters
 ```sh
@@ -118,14 +118,14 @@ int add(int a, int b, int c) {
     return a + b + c;
 }
 
-cout << add(1, 2, 3) << endl;  // Output: 6
+cout << add(1, 2, 3) << endl;  # Output: 6
 ```
 
 ## 3. Data Structures
 ### 3.1 Arrays (Fixed Size)
 ```sh
 #include <array>
-#include <algorithm>  // For algorithms like sort, reverse, etc.
+#include <algorithm>  # For algorithms like sort, reverse, etc.
 
 # C-style array initialization
 int arr[5] = {1, 2, 3, 4, 5};
@@ -349,14 +349,14 @@ if (treeMap.find(4) != treeMap.end()) {
 ```
 #### Find the First Element Greater or Equal (`lower_bound`)
 ```sh
-auto it = treeMap.lower_bound(3);  // Smallest key ≥ 3
+auto it = treeMap.lower_bound(3);  # Smallest key ≥ 3
 if (it != treeMap.end()) {
     std::cout << "Lower bound: " << it->first << " -> " << it->second << std::endl;
 }
 ```
 #### Find the First Element Strictly Greater (`upper_bound`)
 ```sh
-auto it = treeMap.upper_bound(3);  // Smallest key > 3
+auto it = treeMap.upper_bound(3);  # Smallest key > 3
 if (it != treeMap.end()) {
     std::cout << "Upper bound: " << it->first << " -> " << it->second << std::endl;
 }
@@ -379,3 +379,596 @@ umultiMap.insert({1, "one"});
 umultiMap.insert({1, "uno"});
 umultiMap.insert({2, "two"});
 ```
+
+## 3.5  Sets
+### 3.5.1  Definition and Initialization
+#### Ordered Set (`std::set`)
+```sh
+#include <set>
+std::set<int> orderedSet;  # Empty ordered set
+std::set<int> orderedSet = {1, 2, 3, 4, 5};  # Initialization with values
+```
+#### Unordered Set (`std::unordered_set`)
+```sh
+#include <unordered_set>
+std::unordered_set<int> unorderedSet;  # Empty unordered set
+std::unordered_set<int> unorderedSet = {1, 2, 3, 4, 5};  # Initialization
+```
+#### Multiset (`std::multiset`) - Allows Duplicate Elements
+```sh
+#include <set>
+std::multiset<int> multiSet;  # Empty multiset
+std::multiset<int> multiSet = {1, 1, 2, 2, 3};  # Allows duplicates
+```
+#### Unordered Multiset (`std::unordered_multiset`)
+```sh
+#include <unordered_set>
+std::unordered_multiset<int> unorderedMultiSet = {1, 1, 2, 2, 3};  # Allows duplicates
+```
+
+### 3.5.2  Inserting Elements
+#### Insert Single Element
+```sh
+orderedSet.insert(10);
+unorderedSet.insert(10);
+```
+#### Insert Multiple Elements (Initializer List)
+```sh
+orderedSet.insert({20, 30, 40});
+unorderedSet.insert({20, 30, 40});
+```
+#### Using `.emplace()` (Avoids Copy Overhead)
+```sh
+orderedSet.emplace(50);
+unorderedSet.emplace(50);
+```
+
+### 3.5.3 Deleting Elements
+####  Remove a Specific Element
+```sh
+orderedSet.erase(20);  # Removes element with value 20
+unorderedSet.erase(30);
+```
+#### Erase Using Iterator
+```sh
+auto it = orderedSet.find(10);
+if (it != orderedSet.end()) {
+    orderedSet.erase(it);
+}
+```
+#### Erase a Range of Elements
+```sh
+orderedSet.erase(orderedSet.begin(), orderedSet.end());  # Clears the entire set
+```
+#### Clear All Elements
+```sh
+orderedSet.clear();
+unorderedSet.clear();
+```
+
+### 3.5.6 Checking Size and Emptiness
+```sh
+cout << "Size: " << orderedSet.size() << endl;
+if (orderedSet.empty()) {
+    cout << "Set is empty!" << endl;
+}
+```
+
+### 3.5.7 Searching for Elements
+#### Check If an Element Exists
+```sh
+if (orderedSet.find(10) != orderedSet.end()) {
+    cout << "10 exists in the set" << endl;
+}
+```
+#### Count Occurrences (Useful for `multiset`)
+```sh
+cout << "Count of 1 in multiset: " << multiSet.count(1) << endl;
+```
+
+### 3.5.8  Iterating Over a Set
+#### Using a `for` Loop
+```sh
+for (const auto& elem : orderedSet) {
+    std::cout << elem << " ";
+}
+```
+#### Using Iterators
+```sh
+for (auto it = orderedSet.begin(); it != orderedSet.end(); ++it) {
+    std::cout << *it << " ";
+}
+```
+#### Reverse Iteration
+```sh
+for (auto it = orderedSet.rbegin(); it != orderedSet.rend(); ++it) {
+    std::cout << *it << " ";
+}
+```
+
+### 3.5.8 Lower and Upper Bound (Only for `std::set)`
+#### Find the First Element Greater or Equal (`lower_bound`)
+```sh
+auto it = orderedSet.lower_bound(3);
+if (it != orderedSet.end()) {
+    std::cout << "Lower bound: " << *it << std::endl;
+}
+```
+#### Find the First Element Strictly Greater (`upper_bound`)
+```sh
+auto it = orderedSet.lower_bound(3);
+if (it != orderedSet.end()) {
+    std::cout << "Lower bound: " << *it << std::endl;
+}
+```
+
+### 3.5.9 Using `std::multiset` and `std::unordered_multiset`
+#### MultiSet (Allows Duplicate Elements)
+```sh
+std::multiset<int> multiSet = {1, 1, 2, 2, 3};  # Allows duplicates
+multiSet.insert(2);  # Insert another 2
+std::cout << "Count of 2: " << multiSet.count(2) << std::endl;
+```
+#### Unordered MultiSet
+```sh
+std::unordered_multiset<int> unorderedMultiSet = {1, 1, 2, 2, 3};  # Allows duplicates
+```
+
+## 3.6  Lists
+### 3.6.1  Definition and Initialization
+#### Basic List Declaration
+```sh
+#include <list>
+list<int> myList;  # Empty list
+```
+#### Initialize with Values
+```sh
+#include <unordered_set>
+list<int> myList = {1, 2, 3, 4, 5};  # List with initial values
+```
+#### Initialize with a Fixed Size and Default Value
+```sh
+list<int> myList(5, 10);  # List of size 5, all elements initialized to 10
+```
+#### Copy Constructor
+```sh
+list<int> newList(myList);  # Copy existing list
+```
+#### Move Constructor
+```sh
+list<int> movedList(move(myList));  # Move elements from another list
+```
+
+### 3.6.2  Inserting Elements
+#### Push Elements at the Front and Back
+```sh
+myList.push_back(10);  # Add element to the end
+myList.push_front(5);  # Add element to the beginning
+
+```
+#### Insert at a Specific Position
+```sh
+auto it = myList.begin();
+std::advance(it, 2);  # Move iterator to the 3rd position (0-based index)
+myList.insert(it, 99);  # Insert 99 at the 3rd position
+```
+#### Insert Multiple Elements
+```sh
+myList.insert(it, 3, 20);  # Insert three 20s at the specified position
+```
+#### Insert from Another List
+```sh
+std::list<int> anotherList = {50, 60};
+myList.insert(it, anotherList.begin(), anotherList.end());  # Insert another list's elements
+```
+#### Emplace (Avoids Copy Overhead)
+```sh
+myList.emplace(myList.begin(), 42);  #Efficiently inserts 42 at the beginning
+```
+
+### 3.6.3 Deleting Elements
+####  Remove Specific Element
+```sh
+myList.remove(99);  # Removes all occurrences of 99
+```
+#### Erase an Element by Position
+```sh
+auto it = myList.begin();
+std::advance(it, 2);  # Move iterator to the 3rd element
+myList.erase(it);  # Remove element at that position
+```
+#### Erase a Range of Elements
+```sh
+auto start = myList.begin();
+auto end = myList.begin();
+std::advance(end, 3);  # Move end iterator to the 4th element
+myList.erase(start, end);  # Remove elements from 1st to 3rd position
+```
+#### Pop Elements from Front and Back
+```sh
+myList.pop_front();  # Removes first element
+myList.pop_back();   # Removes last element
+```
+
+#### Clear the List
+```sh
+myList.clear();  # Removes all elements
+```
+
+### 3.6.6 Checking Size and Emptiness
+```sh
+cout << "Size: " << myList.size() << endl;
+if (myList.empty()) {
+    cout << "List is empty!" << endl;
+}
+```
+
+### 3.6.7 Accessing Elements
+```sh
+cout << "First: " << myList.front() << endl;
+cout << "Last: " << myList.back() << endl;
+```
+
+### 3.6.8  Searching for Elements
+```sh
+#include <algorithm>
+auto it = std::find(myList.begin(), myList.end(), 42);
+if (it != myList.end()) {
+    std::cout << "Element found: " << *it << std::endl;
+}
+```
+
+### 3.6.8 Iterating Over a List
+#### Using a `for` Loop
+```sh
+for (const auto& elem : myList) {
+    std::cout << elem << " ";
+}
+```
+#### Using Iterators
+```sh
+for (auto it = myList.begin(); it != myList.end(); ++it) {
+    std::cout << *it << " ";
+}
+```
+#### Reverse Iteration
+```sh
+for (auto it = myList.rbegin(); it != myList.rend(); ++it) {
+    std::cout << *it << " ";
+}
+```
+
+### 3.6.9 Sorting and Reversing
+### Sorting a List
+```sh
+myList.sort();  # Sorts in ascending order
+```
+### Sorting with a Custom Comparator
+```sh
+myList.sort([](int a, int b) { return a > b; });  # Sorts in descending order
+```
+### Reversing a List
+```sh
+myList.reverse();
+```
+
+### 3.6.10 Merging and Splicing
+#### Merging Two Sorted Lists
+```sh
+std::list<int> list1 = {1, 3, 5};
+std::list<int> list2 = {2, 4, 6};
+list1.merge(list2);  # Merges list2 into list1
+```
+#### Splicing (Move Elements from One List to Another)
+```sh
+std::list<int> source = {7, 8, 9};
+std::list<int> destination = {1, 2, 3};
+
+# Move all elements from source to destination
+destination.splice(destination.end(), source);
+```
+
+#### 3.6.11 Removing Duplicates
+```sh
+myList.unique();  # Removes consecutive duplicate elements
+```
+
+## 3.7 Queue
+#### 3.7.1 Definition and Initialization
+```sh
+#include <queue>
+queue<int> myQueue;  # Empty queue
+queue<int> myQueue({1, 2, 3, 4, 5});  # C++17 and later (optional)
+queue<int> queueCopy(myQueue);  # Copy an existing queue
+queue<int> movedQueue(move(myQueue));  # Move contents of an existing queue
+```
+
+#### 3.7.2 Basic Operations
+```sh
+myQueue.push(10);  # Insert element at the back
+myQueue.pop();  # Removes the front element
+
+std::cout << "Front: " << myQueue.front() << std::endl;
+std::cout << "Back: " << myQueue.back() << std::endl;
+
+myQueue.size() # Calculate the Size
+myQueue.empty() # Returns True if it is Empty
+```
+
+#### 3.7.3 Iterating Over a Queue
+```sh
+std::queue<int> tempQueue = myQueue;  # Create a copy to avoid modifying original queue
+
+while (!tempQueue.empty()) {
+    std::cout << tempQueue.front() << " ";
+    tempQueue.pop();  # Remove the processed element
+}
+```
+#### 3.7.4 Priority Queue (`std::priority_queue`) & Deque
+```sh
+# Max-Heap Priority Queue (By Default)
+priority_queue<int> pq;
+pq.push(3);
+pq.push(5);
+pq.push(1);
+
+cout << pq.top() << endl;  # Output: 5 (largest element)
+pq.pop();  # Removes 5
+
+# Min-Heap Priority Queue
+priority_queue<int, vector<int>, greater<int>> minHeap;
+minHeap.push(3);
+minHeap.push(5);
+minHeap.push(1);
+
+cout << minHeap.top() << endl;  # Output: 1 (smallest element)
+
+# A queue that supports efficient insertions and deletions from both ends.
+deque<int> dq = {1, 2, 3};
+queue<int, deque<int>> dequeQueue(dq);
+```
+
+## 3.8 Stacks
+### 3.8.1 Definition and Initialization
+```sh
+#include <stack>
+stack<int> myStack;  # Empty stack
+stack<int> myStack({1, 2, 3, 4, 5});  # Not standard in all compilers
+stack<int> stackCopy(myStack);  # Copy constructor
+stack<int> movedStack(move(myStack));  # Move contents
+```
+
+### 3.8.2 Basic Operations
+```sh
+myStack.push(10);
+myStack.pop();  # Removes the top element
+cout << "Top: " << myStack.top() << endl;
+myStack.size()  # Calculates the size 
+myStack.empty() # Check whether the stack is Empty ot not
+```
+
+### 3.8.3 Iterating Over a Stack
+```sh
+stack<int> tempStack = myStack;  # Create a copy to avoid modifying original stack
+
+while (!tempStack.empty()) {
+    cout << tempStack.top() << " ";
+    tempStack.pop();  # Remove the processed element
+}
+```
+
+## 5. Object-Oriented Programming (OOP)
+- Classes define the blueprint for objects, and objects are instances of a class.
+### 5.1 Classes and Objects
+```sh
+class Person {
+public:
+    std::string name;
+    int age;
+
+    Person(std::string n, int a) : name(n), age(a) {}
+    
+    void greet() {
+        std::cout << "Hello, my name is " << name << "!" << std::endl;
+    }
+};
+
+Person p("Shreyas", 25);
+p.greet();
+```
+### 5.2 Encapsulation (Restricts Direct Access to Data)
+- Encapsulation hides the internal state and only allows access through public methods.
+```sh
+#include <iostream>
+using namespace std;
+
+class BankAccount {
+private:
+    double balance;  # Private data member
+
+public:
+    # Constructor to initialize balance
+    BankAccount(double initialBalance) {
+        balance = (initialBalance >= 0) ? initialBalance : 0;
+    }
+
+    # Public methods to interact with private data
+    void deposit(double amount) { balance += amount; }
+    void withdraw(double amount) { if (amount <= balance) balance -= amount; }
+    double getBalance() { return balance; }
+};
+
+int main() {
+    BankAccount account(1000);
+    account.deposit(500);
+    account.withdraw(300);
+    cout << "Balance: $" << account.getBalance() << endl;  # Output: Balance: $1200
+    return 0;
+}
+```
+### 5.3 Inheritance (Allows Code Reuse Between Classes)
+- Inheritance allows a class to inherit properties and methods from another class.
+```sh
+#include <iostream>
+using namespace std;
+
+# Base class (Parent)
+class Animal {
+public:
+    void eat() {
+        cout << "This animal eats food." << endl;
+    }
+};
+
+# Derived class (Child)
+class Dog : public Animal {
+public:
+    void bark() {
+        cout << "The dog barks!" << endl;
+    }
+};
+
+int main() {
+    Dog myDog;
+    myDog.eat();  # Inherited from Animal class
+    myDog.bark(); # Defined in Dog class
+    return 0;
+}
+
+```
+### 5.4 Polymorphism (Same Interface, Different Implementation)
+- #### 5.4.1 Example of Function Overloading (Compile-time Polymorphism):
+```sh
+#include <iostream>
+using namespace std;
+
+class Math {
+public:
+    # Function Overloading: Same function name, different parameters
+    int add(int a, int b) {
+        return a + b;
+    }
+    
+    double add(double a, double b) {
+        return a + b;
+    }
+};
+
+int main() {
+    Math obj;
+    cout << obj.add(5, 3) << endl;     # Output: 8
+    cout << obj.add(2.5, 1.5) << endl; # Output: 4.0
+    return 0;
+}
+```
+
+- #### 5.4.2 Example of Function Overriding (Run-time Polymorphism):
+```sh
+#include <iostream>
+using namespace std;
+
+class Animal {
+public:
+    virtual void makeSound() { cout << "Animal makes a sound" << endl; }
+};
+
+class Dog : public Animal {
+public:
+    void makeSound() override { cout << "Dog barks" << endl; }
+};
+
+int main() {
+    Animal* animal = new Dog();
+    animal->makeSound();  // Output: Dog barks (Polymorphism at runtime)
+    delete animal;
+    return 0;
+}
+```
+
+### 5.5 Abstraction (Hides Implementation Details)
+- Abstraction allows you to define methods that must be implemented in derived classes, while hiding the details of the implementation.
+```sh
+#include <iostream>
+using namespace std;
+
+# Abstract class (interface)
+class Shape {
+public:
+    virtual void draw() = 0;  # Pure virtual function
+};
+
+class Circle : public Shape {
+public:
+    void draw() override {
+        cout << "Drawing a Circle" << endl;
+    }
+};
+
+class Rectangle : public Shape {
+public:
+    void draw() override {
+        cout << "Drawing a Rectangle" << endl;
+    }
+};
+
+int main() {
+    Shape* shape1 = new Circle();
+    Shape* shape2 = new Rectangle();
+
+    shape1->draw();  # Output: Drawing a Circle
+    shape2->draw();  # Output: Drawing a Rectangle
+
+    delete shape1;
+    delete shape2;
+    return 0;
+}
+```
+
+### 5.6 Constructor (`__init__`)
+```sh
+#include <iostream>
+using namespace std;
+
+class Car {
+private:
+    string brand;
+    int speed;
+
+public:
+    # Constructor
+    Car(string b, int s) {
+        brand = b;
+        speed = s;
+        cout << "Car object created!" << endl;
+    }
+
+    void display() {
+        cout << "Brand: " << brand << ", Speed: " << speed << " km/h" << endl;
+    }
+};
+
+int main() {
+    Car myCar("Toyota", 120);  # Constructor is automatically called
+    myCar.display();  
+    return 0;
+}
+```
+
+### 5.7 Destructor (`__del__`)
+```sh
+#include <iostream>
+using namespace std;
+
+class Car {
+public:
+    Car() { cout << "Car is created!" << endl; }
+    
+    ~Car() { cout << "Car is destroyed!" << endl; }
+};
+
+int main() {
+    Car myCar;  # Constructor is called automatically
+    return 0;   # Destructor is called automatically when object goes out of scope
+}
+
+``` 
