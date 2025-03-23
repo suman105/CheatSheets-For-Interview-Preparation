@@ -1048,7 +1048,7 @@ int main() {
 }
 ```
 
-### 5.6 Constructor (`__init__`)
+### 5.6 Constructor
 ```cpp
 #include <iostream>
 using namespace std;
@@ -1078,7 +1078,7 @@ int main() {
 }
 ```
 
-### 5.7 Destructor (`__del__`)
+### 5.7 Destructor
 ```cpp
 #include <iostream>
 using namespace std;
