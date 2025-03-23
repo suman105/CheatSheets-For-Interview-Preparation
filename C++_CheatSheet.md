@@ -1,5 +1,4 @@
-# C++ Cheat Sheet
-
+# <img src="https://upload.wikimedia.org/wikipedia/commons/1/18/ISO_C%2B%2B_Logo.svg" alt="C++ Logo" width="35" height="35" style="margin-bottom: -7px;"> Cheat Sheet 
 ## 1. Basics
 
 ### 1.1 Install C++
