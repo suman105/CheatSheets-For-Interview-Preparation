@@ -9,9 +9,10 @@ python --version
 ```
 ### 1.2 Variables & Data Types
 ```sh
-x = 10      # Integer
-y = 3.14    # Float
-z = "Hello" # String
+x = 10      // Integer
+y = 3.14    // Float
+z = "Hello" // String
+flag = True // Boolean
 ```
 
 ### 1.3 Conditional Statements
@@ -26,11 +27,41 @@ else:
 
 ### 1.4 Loops
 ```sh
-# For loop
+// For loop
 for i in range(5):
     print(i)
 
-# While loop
+// For loop with start and end
+for i in range(1, 5):
+    print(i)  // Output: 1 2 3 4
+
+// For Loop with Step
+for i in range(0, 10, 2):
+    print(i)  // Output: 0 2 4 6 8
+
+// For Loop with Negative Step
+for i in range(5, 0, -1):
+    print(i)  // Output: 5 4 3 2 1
+
+// For Loop Over a List
+fruits = ["apple", "banana", "cherry"]
+for fruit in fruits:
+    print(fruit)  // Output: apple banana cherry
+
+//For Loop Over a Dictionary
+// Iterate over keys in a dictionary
+person = {"name": "John", "age": 25}
+for key in person:
+    print(key)  // Output: name age
+
+// Iterate over key-value pairs
+for key, value in person.items():
+    print(f"{key}: {value}")
+// Output:
+// name: John
+// age: 25
+
+// While loop
 n = 0
 while n < 5:
     print(n)
@@ -43,29 +74,29 @@ while n < 5:
 def greet():
     print("Hello, world!")
 
-greet()  # Output: Hello, world!
+greet()  // Output: Hello, world!
 ```
 ### 2.2 Function With Parameters
 ```sh
 def greet(name):
     print(f"Hello, {name}!")
 
-greet("Shreyas")  # Output: Hello, Shreyas!
+greet("John")  // Output: Hello, John!
 ```
 ### 2.3 Function With Default Parameters
 ```sh
 def greet(name="Guest"):
     print(f"Hello, {name}!")
 
-greet()           # Output: Hello, Guest!
-greet("Shreyas")    # Output: Hello, Shreyas!
+greet()           // Output: Hello, Guest!
+greet("John")    // Output: Hello, John!
 ```
 ### 2.4 Function With Multiple Parameters
 ```sh
 def add(a, b):
     return a + b
 
-result = add(5, 3)  # Output: 8
+result = add(5, 3)  // Output: 8
 ```
 ### 2.5 Function With Variable Number of Arguments (*args)
 ```sh
@@ -73,7 +104,7 @@ def greet(*names):
     for name in names:
         print(f"Hello, {name}!")
 
-greet("Shreyas", "John", "Alice")  # Output: Hello, Shreyas! Hello, John! Hello, Alice!
+greet("John", "John", "Alice")  // Output: Hello, John! Hello, John! Hello, Alice!
 ```
 ### 2.6 Function With Keyword Arguments (**kwargs)
 ```sh
@@ -81,18 +112,18 @@ def person_info(**kwargs):
     for key, value in kwargs.items():
         print(f"{key}: {value}")
 
-person_info(name="Shreyas", age=25, city="Texas")
-# Output:
-# name: Shreyas
-# age: 25
-# city: Texas
+person_info(name="John", age=25, city="Texas")
+// Output:
+// name: John
+// age: 25
+// city: Texas
 ```
 ### 2.7 Function Returning a Value
 ```sh
 def add(a, b):
     return a + b
 
-result = add(5, 3)  # Output: 8
+result = add(5, 3)  // Output: 8
 print(result)
 
 ```
@@ -103,22 +134,22 @@ def func(arg1, arg2, *args, **kwargs):
     print(args)
     print(kwargs)
 
-func(1, 2, 3, 4, 5, name="Shreyas", age=25)
-# Output:
-# 1 2
-# (3, 4, 5)
-# {'name': 'Shreyas', 'age': 25}
+func(1, 2, 3, 4, 5, name="John", age=25)
+// Output:
+// 1 2
+// (3, 4, 5)
+// {'name': 'John', 'age': 25}
 
 ```
 ### 2.9 Lambda Functions (Anonymous Functions)
 ```sh
-# Lambda function with parameters
+// Lambda function with parameters
 square = lambda x: x * x
-print(square(5))  # Output: 25
+print(square(5))  // Output: 25
 
-# Lambda function with multiple parameters
+// Lambda function with multiple parameters
 add = lambda x, y: x + y
-print(add(3, 4))  # Output: 7
+print(add(3, 4))  // Output: 7
 
 ```
 ### 2.10 Function with Return Type Annotations
@@ -126,7 +157,7 @@ print(add(3, 4))  # Output: 7
 def greet(name: str) -> str:
     return f"Hello, {name}!"
 
-print(greet("Shreyas"))  # Output: Hello, Shreyas!
+print(greet("John"))  // Output: Hello, John!
 
 ```
 ### 2.11 Recursive Functions
@@ -136,7 +167,7 @@ def factorial(n):
         return 1
     return n * factorial(n-1)
 
-print(factorial(5))  # Output: 120
+print(factorial(5))  // Output: 120
 
 ```
 ### 2.12 Nested Functions (Functions Inside Functions)
@@ -146,121 +177,247 @@ def outer_function():
         return "Inner function called!"
     return inner_function()
 
-print(outer_function())  # Output: Inner function called!
+print(outer_function())  // Output: Inner function called!
 
 ```
 
 ## 3. Data Structures
 ### 3.1 Lists (Mutable, Ordered, Indexed, Allows Duplicates)
 - A list is a collection of elements that are ordered, indexed, and mutable (can be changed).
+#### 3.1.1 Initialization
 ```sh
-nums = [1, 2, 3]
-nums.append(4)
-nums.remove(2)
-print(nums)
+// Empty list
+lst = []
 
-# Other List Methods
-nums.extend([5, 6])   # Extend list with another list
-nums.insert(1, 7)     # Insert at index
-nums.pop()            # Remove last element
-nums.pop(1)           # Remove element at index
-nums.index(3)         # Find index of element
+// List with initial values
+lst = [1, 2, 3]
 
+// List from a range
+lst = list(range(5))  // lst = [0, 1, 2, 3, 4]
 ```
+
+#### 3.1.2 Methods
+```sh
+// Add an element to the end
+lst.append(4)  // lst = [1, 2, 3, 4]
+
+// Insert an element at a specific index
+lst.insert(1, 10)  // lst = [1, 10, 2, 3, 4]
+
+// Remove an element by value
+lst.remove(10)  // lst = [1, 2, 3, 4]
+
+// Remove an element by index
+popped_element = lst.pop(1)  // popped_element = 2, lst = [1, 3, 4]
+
+// Reverse the list
+lst.reverse()  // lst = [4, 3, 1]
+
+// Sort the list
+lst.sort()  // lst = [1, 3, 4]
+
+// Clear all elements
+lst.clear()  // lst = []
+```
+
+#### 3.1.3 Operations
+```sh
+// Slicing
+sublist = lst[1:3]  // sublist = [3]
+
+// List comprehension
+squared_list = [x**2 for x in lst]  // squared_list = [1, 9, 16]
+
+// Check if an element exists
+if 3 in lst:
+    print("Element found")  // Output: Element found
+```
+
 ### 3.2 Tuples (Immutable, Ordered, Indexed, Allows Duplicates)
 - A tuple is an ordered collection of elements, but it is immutable, meaning it cannot be modified once created.
+
+#### 3.2.1 Initialization
 ```sh
-tup = (1, 2, 3)
-print(tup[0])
-# tup[0] = 5  # TypeError: 'tuple' object does not support item assignment
+// Empty tuple
+t = ()
 
-# Other Tuple Methods
-print(len(tup))   # Get length of tuple
-print(tup.count(2)) # Count occurrences of 2
-print(tup.index(2)) # Find index of first occurrence of 2
+// Tuple with initial values
+t = (1, 2, 3)
 
+// Single-element tuple (note the comma)
+t = (1,)
 ```
+
+#### 3.3.2 Methods
+```sh
+// Count occurrences of an element
+count = t.count(2)  // count = 1
+
+// Find index of an element
+index = t.index(3)  // index = 2
+```
+
+#### 3.3.3 Operations
+```sh
+// Slicing
+subt = t[1:3]  // subt = (2, 3)
+
+// Concatenation
+t1 = (1, 2)
+t2 = (3, 4)
+t3 = t1 + t2  // t3 = (1, 2, 3, 4)
+
+// Check if an element exists
+if 2 in t:
+    print("Element found")  // Output: Element found
+```
+
 ### 3.3 Dictionaries (Mutable, Unordered (Python 3.6 and below), Key-Value Pairs, Unique Keys)
 - A dictionary is an unordered collection of key-value pairs. Keys must be unique.
+#### 3.3.1 Initialization
 ```sh
-d = {"name": "Shreyas", "age": 25}
-print(d["name"])
-d["city"] = "Texas"
-print(d)
+// Empty dictionary
+d = {}
 
-# Other Dictionary Methods
-d.update({"country": "USA"})  # Update dictionary with new key-value pair
-del d["age"]                  # Delete key-value pair
-print(d.keys())                # View all keys
-print(d.values())              # View all values
-print(d.items())               # View key-value pairs
+// Dictionary with initial key-value pairs
+d = {"name": "John", "age": 25}
 
-# Looping Over Keys
-for key in d:
-    print(key)  # Output: name, age
-
-# Looping Over Values
-for value in d.values():
-    print(value)  # Output: Shreyas, 25
-
-# Looping Over Key-Value Pairs
-for key, value in d.items():
-    print(f"{key}: {value}")
-
-
+// Dictionary from a list of tuples
+d = dict([("name", "John"), ("age", 25)])
 ```
+#### 3.3.2 Methods
+```sh
+// Add or update a key-value pair
+d["city"] = "Texas"  // d = {"name": "John", "age": 25, "city": "Texas"}
+
+// Remove a key-value pair
+del d["age"]  // d = {"name": "John", "city": "Texas"}
+
+// Get value by key (raises KeyError if not found)
+name = d["name"]  // name = "John"
+
+// Safely get value by key (returns None if not found)
+age = d.get("age")  // age = None
+
+// Get all keys
+keys = d.keys()  // keys = dict_keys(["name", "city"])
+
+// Get all values
+values = d.values()  // values = dict_values(["John", "Texas"])
+
+// Get all key-value pairs
+items = d.items()  // items = dict_items([("name", "John"), ("city", "Texas")])
+
+// Check if a key exists
+if "name" in d:
+    print("Key found")  // Output: Key found
+
+// Clear all key-value pairs
+d.clear()  // d = {}
+```
+
+#### 3.3.3 Operations
+```sh
+// Merge two dictionaries
+d1 = {"name": "John"}
+d2 = {"age": 25}
+d1.update(d2)  // d1 = {"name": "John", "age": 25}
+
+// Dictionary comprehension
+squared_dict = {x: x**2 for x in range(5)}  // squared_dict = {0: 0, 1: 1, 2: 4, 3: 9, 4: 16}
+```
+
 ### 3.4 Sets (Mutable, Unordered, Unique Elements)
 - A set is an unordered collection of unique elements.
+#### 3.4.1 Initialization
 ```sh
+// Empty set
+s = set()
+
+// Set with initial values
 s = {1, 2, 3}
-s.add(4)            # Add element
-s.remove(2)         # Remove element (raises KeyError if not found)
-s.discard(3)        # Remove element (doesn't raise error if not found)
-s.pop()             # Remove and return an arbitrary element
-s.clear()           # Remove all elements
-print(len(s))       # Get number of elements in set
-print(s)
 
-# Other Set Methods
-s.update([5, 6])    # Add multiple elements
-s.intersection({4, 5})  # Get common elements
-s.union({5, 6})         # Get all unique elements from both sets
-s.difference({1, 5})    # Get elements in the set but not in the other set
-print(s.isdisjoint({7, 8}))  # Check if no elements in common
-print(s.issubset({1, 2, 3, 4}))  # Check if set is a subset of another
-print(s.issuperset({1, 2}))  # Check if set is a superset of another
+// Set from a list
+s = set([1, 2, 3, 4])
+```
 
+#### 3.4.2 Methods
+```sh
+// Add an element
+s.add(4)  // s = {1, 2, 3, 4}
+
+// Remove an element (raises KeyError if not found)
+s.remove(2)  // s = {1, 3, 4}
+
+// Discard an element (no error if not found)
+s.discard(5)  // s remains {1, 3, 4}
+
+// Remove and return an arbitrary element
+popped_element = s.pop()  // popped_element = 1, s = {3, 4}
+
+// Clear all elements
+s.clear()  // s = set()
+
+// Check if an element exists
+if 3 in s:
+    print("Element found")  // Output: Element found
+```
+
+#### 3.4.3 Operations
+```sh
+// Union of two sets
+s1 = {1, 2, 3}
+s2 = {3, 4, 5}
+union_set = s1.union(s2)  // union_set = {1, 2, 3, 4, 5}
+
+// Intersection of two sets
+intersection_set = s1.intersection(s2)  // intersection_set = {3}
+
+// Difference of two sets
+difference_set = s1.difference(s2)  // difference_set = {1, 2}
+
+// Symmetric difference (elements in either set but not both)
+symmetric_diff = s1.symmetric_difference(s2)  // symmetric_diff = {1, 2, 4, 5}
+
+// Check if a set is a subset
+is_subset = s1.issubset(s2)  // is_subset = False
+
+// Check if a set is a superset
+is_superset = s1.issuperset(s2)  // is_superset = False
+
+// Check if two sets are disjoint (no common elements)
+is_disjoint = s1.isdisjoint(s2)  // is_disjoint = False
 ```
 
 ## 4. Data Type Conversions
 ```sh
-# Convert String to Integer
+// Convert String to Integer
 x = "10"
-x = int(x)  # x is now an integer
+x = int(x)  // x is now an integer
 
-# Convert String to Float
+// Convert String to Float
 x = "10.5"
-x = float(x)  # x is now a float
+x = float(x)  // x is now a float
 
-# Convert Integer to String
+// Convert Integer to String
 x = 10
-x = str(x)  # x is now a string
+x = str(x)  // x is now a string
 
-# Convert List to Tuple
+// Convert List to Tuple
 x = [1, 2, 3]
-x = tuple(x)  # x is now a tuple
+x = tuple(x)  // x is now a tuple
 
-# Convert Tuple to List
+// Convert Tuple to List
 x = (1, 2, 3)
-x = list(x)  # x is now a list
+x = list(x)  // x is now a list
 
-# Convert List to Set
+// Convert List to Set
 x = [1, 2, 2, 3]
-x = set(x)  # x is now a set
+x = set(x)  // x is now a set
 
-# Convert Set to List
+// Convert Set to List
 x = {1, 2, 3}
-x = list(x)  # x is now a list
+x = list(x)  // x is now a list
 
 ```
 
@@ -276,7 +433,7 @@ class Person:
     def greet(self):
         return f"Hello, my name is {self.name}."
 
-p = Person("Shreyas", 25)
+p = Person("John", 25)
 print(p.greet())
 
 ```
@@ -285,7 +442,7 @@ print(p.greet())
 ```sh
 class BankAccount:
     def __init__(self, balance):
-        self.__balance = balance  # Private variable
+        self.__balance = balance  // Private variable
     
     def deposit(self, amount):
         self.__balance += amount
@@ -295,7 +452,7 @@ class BankAccount:
         return self.__balance
 
 account = BankAccount(1000)
-print(account.get_balance())  # Accessing through method
+print(account.get_balance())  // Accessing through method
 
 ```
 ### 5.3 Inheritance (Allows Code Reuse Between Classes)
@@ -359,8 +516,8 @@ class Person:
         self.age = age    # Instance variable
         print(f"{self.name} is created.")
 
-# Creating an instance of the class
-person1 = Person("Shreyas", 25)
+// Creating an instance of the class
+person1 = Person("John", 25)
 ```
 #### Explanation:
 - The `__init__` method is the constructor, and it initializes the instance variables `name` and `age`.
@@ -379,8 +536,8 @@ class Person:
     def __del__(self):
         print(f"{self.name} is destroyed.")
 
-# Creating and deleting an object
-person1 = Person("Shreyas", 25)
+// Creating and deleting an object
+person1 = Person("John", 25)
 del person1
 ``` 
 #### Explanation:
@@ -394,7 +551,7 @@ del person1
 ```sh
 nums = [1, 2, 3, 4]
 squared_nums = list(map(lambda x: x**2, nums))
-print(squared_nums)  # Output: [1, 4, 9, 16]
+print(squared_nums)  // Output: [1, 4, 9, 16]
 ```
 
 #### 6.2  `filter()` Function
@@ -402,7 +559,7 @@ print(squared_nums)  # Output: [1, 4, 9, 16]
 ```sh
 nums = [1, 2, 3, 4, 5, 6]
 even_nums = list(filter(lambda x: x % 2 == 0, nums))
-print(even_nums)  # Output: [2, 4, 6]
+print(even_nums)  // Output: [2, 4, 6]
 ```
 
 #### 6.3  `reduce()` Function
@@ -412,7 +569,7 @@ from functools import reduce
 
 nums = [1, 2, 3, 4]
 product = reduce(lambda x, y: x * y, nums)
-print(product)  # Output: 24
+print(product)  // Output: 24
 ```
 
 #### 6.4 List Comprehensions
@@ -420,20 +577,19 @@ print(product)  # Output: 24
 ```sh
 nums = [1, 2, 3, 4]
 squared_nums = [x**2 for x in nums]
-print(squared_nums)  # Output: [1, 4, 9, 16]
+print(squared_nums)  // Output: [1, 4, 9, 16]
 ```
 
 ### 7. File Handling
 - File handling in Python allows reading from and writing to files.
 ```sh
-# Writing to a file
+// Writing to a file
 with open("file.txt", "w") as f:
     f.write("Hello, world!")
 
-# Reading from a file
+// Reading from a file
 with open("file.txt", "r") as f:
-    print(f.read())
-
+    print(f.read())  // Output: Hello, world!
 ```
 
 ### 8. Exception Handling
@@ -442,8 +598,7 @@ with open("file.txt", "r") as f:
 try:
     x = 1 / 0
 except ZeroDivisionError as e:
-    print(f"Error: {e}")
+    print(f"Error: {e}")  // Output: Error: division by zero
 finally:
-    print("Execution completed")
-
+    print("Execution completed")  // Output: Execution completed
 ```
