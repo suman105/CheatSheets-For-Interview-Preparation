@@ -3,11 +3,11 @@
 
 ### 1.1 Install C++
 Download from [C++](https:#isocpp.org/get-started) and verify installation:
-```sh
+```cpp
 g++ --version
 ```
 ### 1.2 Variables & Data Types
-```sh
+```cpp
 int x = 10;         // Integer
 float y = 3.14f;    // Float
 double z = 3.1415;  // Double
@@ -17,7 +17,7 @@ string str = "Hello"; // String (using <string> header)
 ```
 
 ### 1.3 Conditional Statements
-```sh
+```cpp
 if (x > 5) {
     // code to execute
 } else if (x == 5) {
@@ -28,7 +28,7 @@ if (x > 5) {
 ```
 
 ### 1.4 Loops
-```sh
+```cpp
 // Basic for loop
 for (int i = 0; i < n; ++i) {
     // code to execute
@@ -57,7 +57,7 @@ do {
 ```
 
 ### 1.5 String, Char, Integer Conversion
-```sh
+```cpp
 // Convert int to string
 to_string(num);
 // Convert string to int
@@ -70,7 +70,7 @@ string(charArr);
 
 ## 2. Functions
 ### 2.1 Function Without Parameters
-```sh
+```cpp
 void greet() {
     cout << "Hello, world!" << endl;
 }
@@ -78,7 +78,7 @@ void greet() {
 greet();  // Output: Hello, world!
 ```
 ### 2.2 Function With Parameters
-```sh
+```cpp
 void greet(string name) {
     cout << "Hello, " << name << "!" << endl;
 }
@@ -86,7 +86,7 @@ void greet(string name) {
 greet("Shreyas");  // Output: Hello, Shreyas!
 ```
 ### 2.3 Function With Return Value
-```sh
+```cpp
 int add(int a, int b) {
     return a + b;
 }
@@ -95,7 +95,7 @@ int result = add(5, 3);  // Output: 8
 cout << result << endl;
 ```
 ### 2.4 Function With Default Parameters
-```sh
+```cpp
 void greet(string name = "Guest") {
     cout << "Hello, " << name << "!" << endl;
 }
@@ -104,7 +104,7 @@ greet();           // Output: Hello, Guest!
 greet("Shreyas");  // Output: Hello, Shreyas!
 ```
 ### 2.5 Lambda Functions
-```sh
+```cpp
 auto square = [](int x) { return x * x; };
 cout << square(5) << endl;  // Output: 25
 
@@ -112,7 +112,7 @@ auto add = [](int x, int y) { return x + y; };
 cout << add(3, 4) << endl;  // Output: 7
 ```
 ### 2.6 Function With Multiple Parameters
-```sh
+```cpp
 int add(int a, int b, int c) {
     return a + b + c;
 }
@@ -677,7 +677,7 @@ list<int> movedList(move(myList));  // Move elements from another list
 ```
 
 ### 3.6.2  Inserting Elements
-```sh
+```cpp
 // Push Elements at the Front and Back
 myList.push_back(10);  // Add element to the end
 myList.push_front(5);  // Add element to the beginning
@@ -700,7 +700,7 @@ myList.emplace(myList.begin(), 42);  // Efficiently inserts 42 at the beginning
 ```
 
 ### 3.6.3 Deleting Elements
-```sh
+```cpp
 //  Remove Specific Element
 myList.remove(99);  // Removes all occurrences of 99
 
@@ -724,7 +724,7 @@ myList.clear();  // Removes all elements
 ```
 
 ### 3.6.6 Checking Size and Emptiness
-```sh
+```cpp
 cout << "Size: " << myList.size() << endl;
 if (myList.empty()) {
     cout << "List is empty!" << endl;
@@ -732,13 +732,13 @@ if (myList.empty()) {
 ```
 
 ### 3.6.7 Accessing Elements
-```sh
+```cpp
 cout << "First: " << myList.front() << endl;
 cout << "Last: " << myList.back() << endl;
 ```
 
 ### 3.6.8  Searching for Elements
-```sh
+```cpp
 #include <algorithm>
 auto it = std::find(myList.begin(), myList.end(), 42);
 if (it != myList.end()) {
@@ -747,7 +747,7 @@ if (it != myList.end()) {
 ```
 
 ### 3.6.8 Iterating Over a List
-```sh
+```cpp
 // Using a `for` Loop
 for (const auto& elem : myList) 
 {
@@ -766,7 +766,7 @@ for (auto it = myList.rbegin(); it != myList.rend(); ++it) {
 ```
 
 ### 3.6.9 Sorting and Reversing
-```sh
+```cpp
 // Sorting a List
 myList.sort();  // Sorts in ascending order
 
@@ -778,7 +778,7 @@ myList.reverse();
 ```
 
 ### 3.6.10 Merging and Splicing
-```sh
+```cpp
 // Merging Two Sorted Lists
 std::list<int> list1 = {1, 3, 5};
 std::list<int> list2 = {2, 4, 6};
@@ -793,13 +793,13 @@ destination.splice(destination.end(), source);
 ```
 
 ### 3.6.11 Removing Duplicates
-```sh
+```cpp
 myList.unique();  // Removes consecutive duplicate elements
 ```
 
 ## 3.7 Queue
 #### 3.7.1 Definition and Initialization
-```sh
+```cpp
 #include <queue>
 queue<int> myQueue;  // Empty queue
 queue<int> myQueue({1, 2, 3, 4, 5});  // C++17 and later (optional)
@@ -808,7 +808,7 @@ queue<int> movedQueue(move(myQueue));  // Move contents of an existing queue
 ```
 
 #### 3.7.2 Basic Operations
-```sh
+```cpp
 myQueue.push(10);  // Insert element at the back
 myQueue.pop();  // Removes the front element
 
@@ -820,7 +820,7 @@ myQueue.empty() // Returns True if it is Empty
 ```
 
 #### 3.7.3 Iterating Over a Queue
-```sh
+```cpp
 std::queue<int> tempQueue = myQueue;  // Create a copy to avoid modifying original queue
 
 while (!tempQueue.empty()) {
@@ -829,7 +829,7 @@ while (!tempQueue.empty()) {
 }
 ```
 #### 3.7.4 Priority Queue (`std::priority_queue`) & Deque
-```sh
+```cpp
 // Max-Heap Priority Queue (By Default)
 priority_queue<int> pq;
 pq.push(3);
@@ -854,7 +854,7 @@ queue<int, deque<int>> dequeQueue(dq);
 
 ## 3.8 Stacks
 ### 3.8.1 Definition and Initialization
-```sh
+```cpp
 #include <stack>
 stack<int> myStack;  // Empty stack
 stack<int> myStack({1, 2, 3, 4, 5});  // Not standard in all compilers
@@ -863,7 +863,7 @@ stack<int> movedStack(move(myStack));  // Move contents
 ```
 
 ### 3.8.2 Basic Operations
-```sh
+```cpp
 myStack.push(10);
 myStack.pop();  // Removes the top element
 cout << "Top: " << myStack.top() << endl;
@@ -872,7 +872,7 @@ myStack.empty() // Check whether the stack is Empty ot not
 ```
 
 ### 3.8.3 Iterating Over a Stack
-```sh
+```cpp
 stack<int> tempStack = myStack;  // Create a copy to avoid modifying original stack
 
 while (!tempStack.empty()) {
@@ -884,7 +884,7 @@ while (!tempStack.empty()) {
 ## 5. Object-Oriented Programming (OOP)
 - Classes define the blueprint for objects, and objects are instances of a class.
 ### 5.1 Classes and Objects
-```sh
+```cpp
 class Person {
 public:
     std::string name;
@@ -902,7 +902,7 @@ p.greet();
 ```
 ### 5.2 Encapsulation (Restricts Direct Access to Data)
 - Encapsulation hides the internal state and only allows access through public methods.
-```sh
+```cpp
 #include <iostream>
 using namespace std;
 
@@ -932,7 +932,7 @@ int main() {
 ```
 ### 5.3 Inheritance (Allows Code Reuse Between Classes)
 - Inheritance allows a class to inherit properties and methods from another class.
-```sh
+```cpp
 #include <iostream>
 using namespace std;
 
@@ -962,7 +962,7 @@ int main() {
 ```
 ### 5.4 Polymorphism (Same Interface, Different Implementation)
 - #### 5.4.1 Example of Function Overloading (Compile-time Polymorphism):
-```sh
+```cpp
 #include <iostream>
 using namespace std;
 
@@ -987,7 +987,7 @@ int main() {
 ```
 
 - #### 5.4.2 Example of Function Overriding (Run-time Polymorphism):
-```sh
+```cpp
 #include <iostream>
 using namespace std;
 
@@ -1011,7 +1011,7 @@ int main() {
 
 ### 5.5 Abstraction (Hides Implementation Details)
 - Abstraction allows you to define methods that must be implemented in derived classes, while hiding the details of the implementation.
-```sh
+```cpp
 #include <iostream>
 using namespace std;
 
@@ -1049,7 +1049,7 @@ int main() {
 ```
 
 ### 5.6 Constructor (`__init__`)
-```sh
+```cpp
 #include <iostream>
 using namespace std;
 
@@ -1079,7 +1079,7 @@ int main() {
 ```
 
 ### 5.7 Destructor (`__del__`)
-```sh
+```cpp
 #include <iostream>
 using namespace std;
 
