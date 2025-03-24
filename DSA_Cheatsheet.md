@@ -2,16 +2,15 @@
 
 ## 1. Time & Space Complexity
 
-| Operation                        | Array  | Linked List | Stack  | Queue  | Binary Tree | Binary Search Tree | Heap   |
-|-----------------------------------|--------|-------------|--------|--------|-------------|--------------------|--------|
-| Accessing Elements               | O(1)   | O(n)        | O(1)   | O(1)   | O(n)        | O(log n)           | O(1)   |
-| Insertion (at beginning)         | O(n)   | O(1)        | O(1)   | O(1)   | O(log n)    | O(log n)           | O(log n)|
-| Insertion (at end)               | O(1)   | O(n)        | O(1)   | O(1)   | O(log n)    | O(log n)           | O(log n)|
-| Deletion (at beginning)          | O(n)   | O(1)        | O(1)   | O(1)   | O(log n)    | O(log n)           | O(log n)|
-| Deletion (at end)                | O(1)   | O(n)        | O(1)   | O(1)   | O(log n)    | O(log n)           | O(log n)|
-| Search (unsorted)                | O(n)   | O(n)        | O(n)   | O(n)   | O(n)        | O(log n)           | O(log n)|
-| Search (sorted)                  | O(log n)| O(n)       | O(n)   | O(n)   | O(log n)    | O(log n)           | O(log n)|
-
+| Operation                        | Array  | Linked List (No Tail Pointer) | Linked List (With Tail Pointer) | Stack  | Queue  | Binary Tree (Unbalanced) | Binary Tree (Balanced) | Binary Search Tree | Heap   |
+|-----------------------------------|--------|-----------------------------|-----------------------------|--------|--------|---------------------|--------------------|--------------------|--------|
+| **Accessing Elements**           | O(1)   | O(n)                        | O(n)                        | O(1)   | O(1)   | O(n)                | O(log n)           | O(log n)           | O(1)   |
+| **Insertion (at beginning)**     | O(n)   | O(1)                        | O(1)                        | O(1)   | O(1)   | O(1)                | O(log n)           | O(log n)           | O(log n) |
+| **Insertion (at end)**           | O(1) (amortized for dynamic arrays) | O(n)  | O(1)                        | O(1)   | O(1)   | O(1)                | O(log n)           | O(log n)           | O(log n) |
+| **Deletion (at beginning)**      | O(n)   | O(1)                        | O(1)                        | O(1)   | O(1)   | O(1)                | O(log n)           | O(log n)           | O(log n) |
+| **Deletion (at end)**            | O(1)   | O(n)                        | O(1)                        | O(1)   | O(1)   | O(1)                | O(log n)           | O(log n)           | O(log n) |
+| **Search (unsorted)**            | O(n)   | O(n)                        | O(n)                        | O(n)   | O(n)   | O(n)                | O(n)               | O(log n)           | O(log n) |
+| **Search (sorted)**              | O(log n) | O(n)                     | O(log n) (if doubly linked list) | O(n)   | O(n)   | O(log n)            | O(log n)           | O(log n)           | O(log n) |
 ---
 
 ## 2. Data Structures
