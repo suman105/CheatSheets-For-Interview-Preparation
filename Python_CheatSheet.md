@@ -4,11 +4,11 @@
 
 ### 1.1 Install Python
 Download from [python.org](https://www.python.org) and verify installation:
-```sh
+```py
 python --version
 ```
 ### 1.2 Variables & Data Types
-```sh
+```py
 x = 10      // Integer
 y = 3.14    // Float
 z = "Hello" // String
@@ -16,7 +16,7 @@ flag = True // Boolean
 ```
 
 ### 1.3 Conditional Statements
-```sh
+```py
 if x > 5:
     print("Greater")
 elif x == 5:
@@ -26,7 +26,7 @@ else:
 ```
 
 ### 1.4 Loops
-```sh
+```py
 // For loop
 for i in range(5):
     print(i)
@@ -70,21 +70,21 @@ while n < 5:
 
 ## 2. Functions
 ### 2.1 Function Without Parameters
-```sh
+```py
 def greet():
     print("Hello, world!")
 
 greet()  // Output: Hello, world!
 ```
 ### 2.2 Function With Parameters
-```sh
+```py
 def greet(name):
     print(f"Hello, {name}!")
 
 greet("John")  // Output: Hello, John!
 ```
 ### 2.3 Function With Default Parameters
-```sh
+```py
 def greet(name="Guest"):
     print(f"Hello, {name}!")
 
@@ -92,14 +92,14 @@ greet()           // Output: Hello, Guest!
 greet("John")    // Output: Hello, John!
 ```
 ### 2.4 Function With Multiple Parameters
-```sh
+```py
 def add(a, b):
     return a + b
 
 result = add(5, 3)  // Output: 8
 ```
 ### 2.5 Function With Variable Number of Arguments (*args)
-```sh
+```py
 def greet(*names):
     for name in names:
         print(f"Hello, {name}!")
@@ -107,7 +107,7 @@ def greet(*names):
 greet("John", "John", "Alice")  // Output: Hello, John! Hello, John! Hello, Alice!
 ```
 ### 2.6 Function With Keyword Arguments (**kwargs)
-```sh
+```py
 def person_info(**kwargs):
     for key, value in kwargs.items():
         print(f"{key}: {value}")
@@ -119,7 +119,7 @@ person_info(name="John", age=25, city="Texas")
 // city: Texas
 ```
 ### 2.7 Function Returning a Value
-```sh
+```py
 def add(a, b):
     return a + b
 
@@ -128,7 +128,7 @@ print(result)
 
 ```
 ### 2.8 Function with Both *args and **kwargs
-```sh
+```py
 def func(arg1, arg2, *args, **kwargs):
     print(arg1, arg2)
     print(args)
@@ -142,7 +142,7 @@ func(1, 2, 3, 4, 5, name="John", age=25)
 
 ```
 ### 2.9 Lambda Functions (Anonymous Functions)
-```sh
+```py
 // Lambda function with parameters
 square = lambda x: x * x
 print(square(5))  // Output: 25
@@ -153,7 +153,7 @@ print(add(3, 4))  // Output: 7
 
 ```
 ### 2.10 Function with Return Type Annotations
-```sh
+```py
 def greet(name: str) -> str:
     return f"Hello, {name}!"
 
@@ -161,7 +161,7 @@ print(greet("John"))  // Output: Hello, John!
 
 ```
 ### 2.11 Recursive Functions
-```sh
+```py
 def factorial(n):
     if n == 0 or n == 1:
         return 1
@@ -171,7 +171,7 @@ print(factorial(5))  // Output: 120
 
 ```
 ### 2.12 Nested Functions (Functions Inside Functions)
-```sh
+```py
 def outer_function():
     def inner_function():
         return "Inner function called!"
@@ -185,7 +185,7 @@ print(outer_function())  // Output: Inner function called!
 ### 3.1 Lists (Mutable, Ordered, Indexed, Allows Duplicates)
 - A list is a collection of elements that are ordered, indexed, and mutable (can be changed).
 #### 3.1.1 Initialization
-```sh
+```py
 // Empty list
 lst = []
 
@@ -197,7 +197,7 @@ lst = list(range(5))  // lst = [0, 1, 2, 3, 4]
 ```
 
 #### 3.1.2 Methods
-```sh
+```py
 // Add an element to the end
 lst.append(4)  // lst = [1, 2, 3, 4]
 
@@ -221,7 +221,7 @@ lst.clear()  // lst = []
 ```
 
 #### 3.1.3 Operations
-```sh
+```py
 // Slicing
 sublist = lst[1:3]  // sublist = [3]
 
@@ -237,7 +237,7 @@ if 3 in lst:
 - A tuple is an ordered collection of elements, but it is immutable, meaning it cannot be modified once created.
 
 #### 3.2.1 Initialization
-```sh
+```py
 // Empty tuple
 t = ()
 
@@ -249,7 +249,7 @@ t = (1,)
 ```
 
 #### 3.3.2 Methods
-```sh
+```py
 // Count occurrences of an element
 count = t.count(2)  // count = 1
 
@@ -258,7 +258,7 @@ index = t.index(3)  // index = 2
 ```
 
 #### 3.3.3 Operations
-```sh
+```py
 // Slicing
 subt = t[1:3]  // subt = (2, 3)
 
@@ -275,7 +275,7 @@ if 2 in t:
 ### 3.3 Dictionaries (Mutable, Unordered (Python 3.6 and below), Key-Value Pairs, Unique Keys)
 - A dictionary is an unordered collection of key-value pairs. Keys must be unique.
 #### 3.3.1 Initialization
-```sh
+```py
 // Empty dictionary
 d = {}
 
@@ -286,7 +286,7 @@ d = {"name": "John", "age": 25}
 d = dict([("name", "John"), ("age", 25)])
 ```
 #### 3.3.2 Methods
-```sh
+```py
 // Add or update a key-value pair
 d["city"] = "Texas"  // d = {"name": "John", "age": 25, "city": "Texas"}
 
@@ -317,7 +317,7 @@ d.clear()  // d = {}
 ```
 
 #### 3.3.3 Operations
-```sh
+```py
 // Merge two dictionaries
 d1 = {"name": "John"}
 d2 = {"age": 25}
@@ -330,7 +330,7 @@ squared_dict = {x: x**2 for x in range(5)}  // squared_dict = {0: 0, 1: 1, 2: 4,
 ### 3.4 Sets (Mutable, Unordered, Unique Elements)
 - A set is an unordered collection of unique elements.
 #### 3.4.1 Initialization
-```sh
+```py
 // Empty set
 s = set()
 
@@ -342,7 +342,7 @@ s = set([1, 2, 3, 4])
 ```
 
 #### 3.4.2 Methods
-```sh
+```py
 // Add an element
 s.add(4)  // s = {1, 2, 3, 4}
 
@@ -364,7 +364,7 @@ if 3 in s:
 ```
 
 #### 3.4.3 Operations
-```sh
+```py
 // Union of two sets
 s1 = {1, 2, 3}
 s2 = {3, 4, 5}
@@ -390,7 +390,7 @@ is_disjoint = s1.isdisjoint(s2)  // is_disjoint = False
 ```
 
 ## 4. Data Type Conversions
-```sh
+```py
 // Convert String to Integer
 x = "10"
 x = int(x)  // x is now an integer
@@ -424,7 +424,7 @@ x = list(x)  // x is now a list
 ## 5. Object-Oriented Programming (OOP)
 - Classes define the blueprint for objects, and objects are instances of a class.
 ### 5.1 Classes and Objects
-```sh
+```py
 class Person:
     def __init__(self, name, age):
         self.name = name
@@ -439,7 +439,7 @@ print(p.greet())
 ```
 ### 5.2 Encapsulation (Restricts Direct Access to Data)
 - Encapsulation hides the internal state and only allows access through public methods.
-```sh
+```py
 class BankAccount:
     def __init__(self, balance):
         self.__balance = balance  // Private variable
@@ -457,7 +457,7 @@ print(account.get_balance())  // Accessing through method
 ```
 ### 5.3 Inheritance (Allows Code Reuse Between Classes)
 - Inheritance allows a class to inherit properties and methods from another class.
-```sh
+```py
 class Animal:
     def speak(self):
         return "I make a sound"
@@ -472,7 +472,7 @@ print(d.speak())
 ```
 ### 5.4 Polymorphism (Same Interface, Different Implementation)
 - Polymorphism allows different classes to provide a different implementation for the same method.
-```sh
+```py
 class Bird:
     def fly(self):
         return "Flies high"
@@ -490,7 +490,7 @@ flying_test(Penguin())
 ```
 ### 5.5 Abstraction (Hides Implementation Details)
 - Abstraction allows you to define methods that must be implemented in derived classes, while hiding the details of the implementation.
-```sh
+```py
 from abc import ABC, abstractmethod
 
 class Vehicle(ABC):
@@ -509,7 +509,7 @@ print(c.start_engine())
 
 ### 5.6 Constructor (`__init__`)
 - The constructor method is called when a new instance of the class is created. It is used to initialize the object's state.
-```sh
+```py
 class Person:
     def __init__(self, name, age):
         self.name = name  # Instance variable
@@ -526,7 +526,7 @@ person1 = Person("John", 25)
 
 ### 5.7 Destructor (`__del__`)
 - The destructor method is called when an object is about to be destroyed or when the program terminates. It is used to perform clean-up tasks, such as releasing resources (e.g., closing files or network connections).
-```sh
+```py
 class Person:
     def __init__(self, name, age):
         self.name = name
@@ -548,7 +548,7 @@ del person1
 ### 6. Functional Programming
 #### 6.1  `map()` Function
 - The `map()` function applies a given function to all items in an input list (or any iterable).
-```sh
+```py
 nums = [1, 2, 3, 4]
 squared_nums = list(map(lambda x: x**2, nums))
 print(squared_nums)  // Output: [1, 4, 9, 16]
@@ -556,7 +556,7 @@ print(squared_nums)  // Output: [1, 4, 9, 16]
 
 #### 6.2  `filter()` Function
 - The `filter()` function filters elements from an iterable based on a function that returns a boolean.
-```sh
+```py
 nums = [1, 2, 3, 4, 5, 6]
 even_nums = list(filter(lambda x: x % 2 == 0, nums))
 print(even_nums)  // Output: [2, 4, 6]
@@ -564,7 +564,7 @@ print(even_nums)  // Output: [2, 4, 6]
 
 #### 6.3  `reduce()` Function
 - The `reduce()` function from the `functools` module is used to apply a function cumulatively to the items in an iterable, reducing it to a single value.
-```sh
+```py
 from functools import reduce
 
 nums = [1, 2, 3, 4]
@@ -574,7 +574,7 @@ print(product)  // Output: 24
 
 #### 6.4 List Comprehensions
 - List comprehensions provide a concise way to create lists in a functional programming style.
-```sh
+```py
 nums = [1, 2, 3, 4]
 squared_nums = [x**2 for x in nums]
 print(squared_nums)  // Output: [1, 4, 9, 16]
@@ -582,7 +582,7 @@ print(squared_nums)  // Output: [1, 4, 9, 16]
 
 ### 7. File Handling
 - File handling in Python allows reading from and writing to files.
-```sh
+```py
 // Writing to a file
 with open("file.txt", "w") as f:
     f.write("Hello, world!")
@@ -594,7 +594,7 @@ with open("file.txt", "r") as f:
 
 ### 8. Exception Handling
 - Exception handling allows you to catch and handle errors gracefully during execution.
-```sh
+```py
 try:
     x = 1 / 0
 except ZeroDivisionError as e:
