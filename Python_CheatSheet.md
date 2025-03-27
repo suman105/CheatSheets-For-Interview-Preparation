@@ -3,7 +3,7 @@
 ## 1. Basics
 
 ### 1.1 Install Python
-Download from [python.org](https://www.python.org) and verify installation:
+Download from [Python](https://www.python.org) and verify installation:
 ```py
 python --version
 ```
@@ -66,6 +66,32 @@ n = 0
 while n < 5:
     print(n)
     n += 1
+```
+### 1.5 Character Classification Functions in Python
+```cpp
+// Character checks (all return True/False)
+c.isalpha()   // Checks if character is alphabetic (a-z, A-Z)
+c.isdigit()   // Checks if character is digit (0-9)
+c.isalnum()   // Checks if character is alphanumeric (a-z, A-Z, 0-9)
+c.islower()   // Checks if character is lowercase letter
+c.isupper()   // Checks if character is uppercase letter
+c.isspace()   // Checks if character is whitespace (space, \t, \n, etc.)
+              // Note: No direct ispunct() equivalent - see note below
+c.isxdigit()  // Checks if character is hexadecimal digit (0-9, a-f, A-F) - custom needed
+c.isprintable() // Checks if character is printable (similar to isprint)
+              // Note: No direct isgraph() equivalent
+              // Note: No direct iscntrl() equivalent
+
+// Conversion functions
+c.lower()     // Convert to lowercase (returns new string)
+c.upper()     // Convert to uppercase (returns new string)
+
+// Example usage:
+c = 'A'
+if c.isupper():
+    c = c.lower()  // 'a'
+if '5'.isdigit():  // True
+    // do something
 ```
 
 ## 2. Functions
@@ -178,8 +204,88 @@ def outer_function():
     return inner_function()
 
 print(outer_function())  // Output: Inner function called!
-
 ```
+
+### 2.13 Built-in Functions
+#### 2.13.1 Mathematical Functions
+```py
+# Absolute value
+abs(-5)             # 5
+
+# Power function (x^y)
+pow(2, 3)           # 8 (same as 2**3)
+pow(2, 3, 5)        # 3 (2^3 % 5)
+
+# Rounding
+round(3.14159, 2)   # 3.14
+round(3.5)          # 4 (banker's rounding)
+
+# Summation
+sum([1, 2, 3])      # 6
+
+# Divmod (returns quotient and remainder)
+divmod(10, 3)       # (3, 1)
+
+# Max/Min
+max(1, 2, 3)        # 3
+min([4, 2, 5])      # 2
+```
+
+#### 2.13.2 Math Module (Requires `import math`)
+```py
+import math
+
+math.sqrt(16)       # 4.0
+math.factorial(5)   # 120
+math.log(100, 10)   # 2.0
+math.sin(math.pi/2) # 1.0
+math.ceil(3.2)      # 4
+math.floor(3.9)     # 3
+math.gcd(12, 18)    # 6
+math.isqrt(17)      # 4 (integer square root)
+```
+
+#### 2.13.3 Iterables & Sequences
+```py
+# Range
+range(5)            # 0..4 (iterator)
+list(range(1, 10, 2)) # [1, 3, 5, 7, 9]
+
+# Length
+len("hello")        # 5
+
+# Enumerate
+for i, v in enumerate(['a', 'b']):
+    print(i, v)     # 0 a, 1 b
+
+# Zip
+list(zip([1, 2], ['a', 'b'])) # [(1, 'a'), (2, 'b')]
+
+# Sorted
+sorted([3, 1, 2])   # [1, 2, 3]
+sorted("cba")       # ['a', 'b', 'c']
+
+# Reversed
+list(reversed([1, 2, 3])) # [3, 2, 1]
+```
+
+#### 2.13.4 Functional Programming
+```py
+# Filter
+list(filter(lambda x: x>0, [-1, 0, 1])) # [1]
+
+# Map
+list(map(str.upper, ['a', 'b'])) # ['A', 'B']
+
+# Reduce (from functools)
+from functools import reduce
+reduce(lambda x,y: x*y, [1, 2, 3]) # 6
+
+# Any/All
+any([False, True])   # True
+all([True, True])    # True
+```
+
 
 ## 3. Data Structures
 ### 3.1 Lists (Mutable, Ordered, Indexed, Allows Duplicates)
