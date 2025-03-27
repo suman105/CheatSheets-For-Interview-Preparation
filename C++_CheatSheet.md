@@ -2,7 +2,7 @@
 ## 1. Basics
 
 ### 1.1 Install C++
-Download from [C++](https:#isocpp.org/get-started) and verify installation:
+Download from [C++](https://isocpp.org/get-started) and verify installation:
 ```cpp
 g++ --version
 ```
@@ -118,6 +118,59 @@ int add(int a, int b, int c) {
 }
 
 cout << add(1, 2, 3) << endl;  // Output: 6
+```
+
+### 2.7 Recusion
+```cpp
+// Factorial using recursion
+int factorial(int n) {
+    if (n == 0 || n == 1) {
+        return 1;
+    }
+    return n * factorial(n - 1);
+}
+
+// Fibonacci using recursion
+int fibonacci(int n) {
+    if (n <= 1) {
+        return n;
+    }
+    return fibonacci(n-1) + fibonacci(n-2);
+}
+
+// Example usage:
+int fact = factorial(5);  // 120
+int fib = fibonacci(6);   // 8
+```
+
+### 2.8 Character Classification Functions (from `<cctype>`)
+```cpp
+#include <cctype>
+
+isalpha(ch);  // Checks if character is alphabetic (a-z, A-Z)
+isdigit(ch);  // Checks if character is digit (0-9)
+isalnum(ch);  // Checks if character is alphanumeric (a-z, A-Z, 0-9)
+islower(ch);  // Checks if character is lowercase letter
+isupper(ch);  // Checks if character is uppercase letter
+isspace(ch);  // Checks if character is whitespace (space, \t, \n, etc.)
+ispunct(ch);  // Checks if character is punctuation
+isxdigit(ch); // Checks if character is hexadecimal digit (0-9, a-f, A-F)
+isprint(ch);  // Checks if character is printable
+isgraph(ch);  // Checks if character has graphical representation
+iscntrl(ch);  // Checks if character is control character
+
+// Conversion functions
+tolower(ch);  // Convert to lowercase
+toupper(ch);  // Convert to uppercase
+
+// Example usage:
+char c = 'A';
+if (isupper(c)) {
+    c = tolower(c);  // 'a'
+}
+if (isdigit('5')) {  // true
+    // do something
+}
 ```
 
 ## 3. Data Structures
@@ -1096,3 +1149,122 @@ int main() {
 }
 
 ``` 
+
+## 6. Memory Management & Pointers
+### 6.1 Pointers
+```cpp
+int x = 10;
+int* ptr = &x;  // Pointer to x
+cout << *ptr;   // Dereferencing (Output: 10)
+
+// Pointer arithmetic
+int arr[3] = {10, 20, 30};
+int* arrPtr = arr;
+cout << *(arrPtr + 1);  // Output: 20 (second element)
+```
+
+### 6.2 Dynamic Memory Allocation
+```cpp
+// Allocate memory
+int* num = new int(5);  
+int* arr = new int[10];  
+
+// Free memory
+delete num;     
+delete[] arr;   
+```
+
+### 6.3 Smart Pointers (C++11+)
+```cpp
+#include <memory>
+// Unique pointer (single ownership)
+unique_ptr<int> uPtr = make_unique<int>(10);
+
+// Shared pointer (multiple ownership)
+shared_ptr<int> sPtr = make_shared<int>(20);
+
+// Weak pointer (no ownership, avoids circular references)
+weak_ptr<int> wPtr = sPtr;
+```
+
+## 7. Comparator Functions
+- A comparator is a function (or functor/lambda) that defines custom sorting/ordering for data structures like `sort()`, `priority_queue`, `set`, etc.
+### 7.1 Basic Syntax
+```cpp
+bool compare(int a, int b) {
+    return a < b;  // Sorts in ascending order
+}
+```
+### 7.2 Usage in Sorting
+```cpp
+#include <algorithm>
+#include <vector>
+
+vector<int> nums = {5, 2, 8, 1, 3};
+
+// Sort ascending (default)
+sort(nums.begin(), nums.end());  
+
+// Sort descending (custom comparator)
+sort(nums.begin(), nums.end(), [](int a, int b) {
+    return a > b;
+});
+```
+
+### 7.3 Comparator for Custom Objects
+```cpp
+struct Person {
+    string name;
+    int age;
+};
+
+// Sort by age (ascending)
+vector<Person> people = {{"Alice", 25}, {"Bob", 20}};
+sort(people.begin(), people.end(), [](const Person& a, const Person& b) {
+    return a.age < b.age;
+});
+```
+
+### 7.4 Sorting Pairs
+```cpp
+vector<pair<int, int>> pairs = {{1, 2}, {3, 1}, {2, 3}};
+
+// Sort by second element
+sort(pairs.begin(), pairs.end(), [](auto& a, auto& b) {
+    return a.second < b.second;
+});
+```
+
+## 8. Templates (Generic Programming)
+### 8.1 Function Templates
+```cpp
+template <typename T>
+T max(T a, T b) {
+    return (a > b) ? a : b;
+}
+
+// Usage:
+cout << max(5, 10);        // 10
+cout << max(3.14, 2.71);   // 3.14
+```
+
+### 8.2 Class Templates
+```cpp
+template <class T>
+class Stack {
+private:
+    vector<T> elements;
+public:
+    void push(T elem) { elements.push_back(elem); }
+    T pop() { 
+        T last = elements.back();
+        elements.pop_back();
+        return last;
+    }
+};
+
+// Usage:
+Stack<int> intStack;
+intStack.push(10);
+cout << intStack.pop();  // 10
+```
