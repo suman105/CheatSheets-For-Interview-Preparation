@@ -180,6 +180,17 @@ let sorted = arr.sort((a, b) => b - a); // [3, 2, 1]
 
 //Index
 let index = arr.findIndex((val) => val === 2); // Index of 2: 1
+
+// Flat
+let nested = [1, [2, [3]]];
+let flat = nested.flat(2); // [1, 2, 3]
+
+// Array.from (Convert iterables to arrays)
+let str = "hello";
+let arr = Array.from(str); // ['h', 'e', 'l', 'l', 'o']
+
+// Array.isArray (Check if object is an array)
+console.log(Array.isArray([1, 2])); // true
 ```
 ### 3.2 Searching and Sorting 
 ```js
