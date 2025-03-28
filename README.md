@@ -8,6 +8,21 @@ Welcome to the **Ultimate Cheat Sheets Collection** repository! 🚀 This reposi
 - Includes **data structures, algorithms, STL, and best practices**.
 - Quick syntax reference for **strings, arrays, vectors, maps, priority queues, stacks, and queues**.
 
+### 🔹 Python Cheat Sheet
+- **Rapid scripting** with clean syntax and built-in data structures.
+- Covers **file handling, list/dict comprehensions, and common libraries**.
+- Quick reference for **strings, lists, dictionaries, loops, and functions**.
+
+### 🔹 JavaScript Cheat Sheet (ES6+)
+- Modern **web development** essentials with **ES6+ features**.
+- Covers **DOM manipulation, async/await, promises, and event handling**.
+- Quick guide to **arrow functions, destructuring, spread/rest operators, and modules**.
+
+### 🔹 Java Cheat Sheet
+- **Robust OOP development** with classes, interfaces, and inheritance.
+- Covers **collections framework (List, Set, Map), multithreading, and exception handling**.
+- Syntax reference for **streams, lambdas, and design patterns**.
+
 ### 🔹 Git & GitHub Cheat Sheet
 - Covers **essential Git commands** for managing repositories.
 - Includes **branching, merging, stashing, rebasing, remote repository handling**.
