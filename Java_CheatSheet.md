@@ -868,4 +868,131 @@ class Car {
 Car myCar = new Car();  // Constructor is called automatically
 myCar = null;  // Object is eligible for garbage collection
 System.gc();  // Suggests garbage collection (not guaranteed)
-``` 
+```
+
+## 6. Exception Handling
+### 6.1 Try-Catch-Finally
+```java
+try {
+    int result = 10 / 0; // Throws ArithmeticException
+} catch (ArithmeticException e) {
+    System.out.println("Error: " + e.getMessage()); // Error: / by zero
+} finally {
+    System.out.println("This always executes.");
+}
+```
+
+### 6.2 Custom Exceptions
+```java
+class InvalidAgeException extends Exception {
+    InvalidAgeException(String message) {
+        super(message);
+    }
+}
+
+void validateAge(int age) throws InvalidAgeException {
+    if (age < 18) throw new InvalidAgeException("Age must be ≥ 18");
+}
+
+try {
+    validateAge(15);
+} catch (InvalidAgeException e) {
+    System.out.println(e.getMessage()); // Age must be ≥ 18
+}
+```
+
+## 7. File I/O (Basic Operations)
+### 7.1 Read a File
+```java
+import java.io.*;
+
+try (BufferedReader br = new BufferedReader(new FileReader("file.txt"))) {
+    String line;
+    while ((line = br.readLine()) != null) {
+        System.out.println(line);
+    }
+} catch (IOException e) {
+    e.printStackTrace();
+}
+```
+
+### 7.2 Write to a File
+```java
+try (BufferedWriter bw = new BufferedWriter(new FileWriter("output.txt"))) {
+    bw.write("Hello, Java!");
+} catch (IOException e) {
+    e.printStackTrace();
+}
+```
+
+### 7.3 List Files in a Directory
+```java
+File dir = new File("/path/to/dir");
+for (File file : dir.listFiles()) {
+    System.out.println(file.getName());
+}
+```
+
+## 8. Generics
+### 8.1 Generic Class
+```java
+class Box<T> {
+    private T content;
+    void setContent(T content) { this.content = content; }
+    T getContent() { return content; }
+}
+
+Box<String> stringBox = new Box<>();
+stringBox.setContent("Hello");
+System.out.println(stringBox.getContent()); // Hello
+```
+
+### 8.2 Generic Methods
+```java
+<T> void printArray(T[] array) {
+    for (T item : array) {
+        System.out.println(item);
+    }
+}
+
+printArray(new Integer[]{1, 2, 3}); // Works with any type
+```
+
+### 8.3  Bounded Generics (`extends`)
+```java
+class NumberBox<T extends Number> { // Only accepts Number types
+    private T number;
+    // ...
+}
+
+NumberBox<Integer> intBox = new NumberBox<>(); // Right way
+NumberBox<String> strBox = new NumberBox<>(); // (String Input Won't Be Accepted) (Compile error)
+```
+
+## 9. Stream API (Java 8+)
+### 9.1 Filter, Map, Reduce
+```java
+List<Integer> nums = Arrays.asList(1, 2, 3, 4, 5);
+
+// Filter even numbers, square them, then sum
+int sum = nums.stream()
+              .filter(n -> n % 2 == 0)
+              .map(n -> n * n)
+              .reduce(0, Integer::sum);
+
+System.out.println(sum); // 20 (4 + 16)
+```
+
+### 9.2 Collect to List/Set
+```java
+List<Integer> evenNumbers = nums.stream()
+                                .filter(n -> n % 2 == 0)
+                                .collect(Collectors.toList());
+```
+
+## 9.3 Parallel Streams
+```java
+long count = nums.parallelStream() // Faster for large datasets
+                 .filter(n -> n > 2)
+                 .count();
+```
