@@ -57,8 +57,23 @@ Welcome to the **Ultimate Cheat Sheets Collection** repository! 🚀 This reposi
 - Open the required cheat sheet file (`README.md` inside each directory).
 - Use the structured commands and references to speed up your workflow.
 
-## 🤝 Contributing
-Feel free to contribute by adding new cheat sheets or updating existing ones! 🚀
+
+## 🤝 **Contributions**
+Contributions are welcome! Feel free to fork this repository, suggest improvements, or add alternative solutions. To contribute:
+1. Fork & Clone the Repository.
+   ```sh
+   git clone https://github.com/suman105/CheatSheets-For-Interview-Preparation.git
+   cd CheatSheets-For-Interview-Preparation
+2. Create a new branch.
+   ```sh
+   git checkout -b feature-branch
+3. Commit your changes.
+   ```sh
+   git commit -am 'Add new solution'
+4. Push to your fork.
+   ```sh
+   git push origin feature-branch
+5. Open a pull request.
 
 ## ⭐ Show Some Love
 If you find these cheat sheets useful, don't forget to **star** ⭐ this repository!.
