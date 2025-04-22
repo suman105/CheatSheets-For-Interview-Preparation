@@ -554,7 +554,7 @@ public:
 
 - A **Heap** is a complete binary tree, where each node satisfies the heap property:
   - **Min Heap**: The value of the parent node is less than or equal to the values of its children.
-  - **Max Heap**: The value of the parent node is greater than or equal to the values of its children.
+  - **Max Heap**: The value of the **parent** node is greater than or equal to the values of its children.
 
 #### **Heap Node Structure**
 ```cpp
